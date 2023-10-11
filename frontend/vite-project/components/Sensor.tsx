@@ -6,10 +6,9 @@ function Sensor() {
   // dar o fetch na API que recebeu os dados da rasp.
 
   const [sensorData, setSensorData] = useState([]);
-  const [apiEndpoint, setApiEndpoint] = useState("http://127.0.0.1:3000/receber");
 
   async function getSensorData() {
-    const response = await fetch(apiEndpoint);
+    const response = await fetch("http://127.0.0.1:3000/receber");
     const data = await response.json();
     setSensorData(data);
     console.log(data);
