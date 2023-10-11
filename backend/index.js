@@ -16,7 +16,7 @@ app.get('/receber', (req, res) => {
 app.post('/enviar', (req, res) => {
     const dado = req.body;
     console.log(dado);
-    dados.push(dado);
+    dados[0] = dado;
     res.send("Dado adicionado com sucesso.");
   });
 
