@@ -1,17 +1,20 @@
 const express = require('express');
 const app = express()
 
-app.get('/', (req, res) => {
-    res.send("HELLO WORLD FROM NODE.")
+let dados = [];
+
+app.use(express.json()); // Add this line to parse JSON data in POST requests
+
+app.get('/receber', (req, res) => {
+    res.json(dados);
 })
 
 
 app.post('/enviar', (req, res) => {
-    const newPost = {
-      id: 4,
-      title: req.body.title
-    };
-    res.json(newPost);
+    const dado = req.body;
+    console.log(dado);
+    dados.push(dado);
+    res.send("Dado adicionado com sucesso.");
   });
 
 app.listen(3000, '0.0.0.0', () => {
