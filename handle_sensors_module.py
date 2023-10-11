@@ -1,0 +1,111 @@
+import struct
+
+CONSTANTE_1 = 16 * 9.8 / 32768
+CONSTANTE_2 = 2000 / 32768
+CONSTANTE_3 = 180 / 32768
+CONSTANTE_4 = 2000 / 32768
+
+
+
+
+def handleSensor1(sensor_list):
+  acel_x = struct.unpack(
+      "<h",
+      bytearray(
+          [int("0x" + sensor_list[4:6], 16),
+           int("0x" + sensor_list[6:8], 16)]))[0] * CONSTANTE_1
+  acel_y = struct.unpack(
+      "<h",
+      bytearray([
+          int("0x" + sensor_list[8:10], 16),
+          int("0x" + sensor_list[10:12], 16)
+      ]))[0] * CONSTANTE_1
+  acel_z = struct.unpack(
+      "<h",
+      bytearray([
+          int("0x" + sensor_list[12:14], 16),
+          int("0x" + sensor_list[14:16], 16)
+      ]))[0] * CONSTANTE_1
+  temp = struct.unpack(
+      "<h",
+      bytearray([
+          int("0x" + sensor_list[16:18], 16),
+          int("0x" + sensor_list[18:20], 16)
+      ]))[0] / 100
+
+  return [acel_x, acel_y, acel_z, temp]
+
+
+
+
+def handleSensor2(sensor_list):
+  vel_x = struct.unpack(
+      "<h",
+      bytearray(
+          [int("0x" + sensor_list[4:6], 16),
+           int("0x" + sensor_list[6:8], 16)]))[0] * CONSTANTE_2
+  vel_y = struct.unpack(
+      "<h",
+      bytearray([
+          int("0x" + sensor_list[8:10], 16),
+          int("0x" + sensor_list[10:12], 16)
+      ]))[0] * CONSTANTE_2
+  vel_z = struct.unpack(
+      "<h",
+      bytearray([
+          int("0x" + sensor_list[12:14], 16),
+          int("0x" + sensor_list[14:16], 16)
+      ]))[0] * CONSTANTE_2
+
+  return [vel_x, vel_y, vel_z]
+
+
+
+
+def handleSensor3(sensor_list):
+  roll = struct.unpack(
+      "<h",
+      bytearray(
+          [int("0x" + sensor_list[4:6], 16),
+           int("0x" + sensor_list[6:8], 16)]))[0] * CONSTANTE_3
+  pitch = struct.unpack(
+      "<h",
+      bytearray([
+          int("0x" + sensor_list[8:10], 16),
+          int("0x" + sensor_list[10:12], 16)
+      ]))[0] * CONSTANTE_3
+  yall = struct.unpack(
+      "<h",
+      bytearray([
+          int("0x" + sensor_list[12:14], 16),
+          int("0x" + sensor_list[14:16], 16)
+      ]))[0] * CONSTANTE_3
+
+  return [roll, pitch, yall]
+
+
+
+
+def handleSensor4(sensor_list):
+  mag_x = struct.unpack(
+      "<h",
+      bytearray(
+          [int("0x" + sensor_list[4:6], 16),
+           int("0x" + sensor_list[6:8], 16)]))[0] * CONSTANTE_3
+  mag_y = struct.unpack(
+      "<h",
+      bytearray([
+          int("0x" + sensor_list[8:10], 16),
+          int("0x" + sensor_list[10:12], 16)
+      ]))[0] * CONSTANTE_3
+  mag_z = struct.unpack(
+      "<h",
+      bytearray([
+          int("0x" + sensor_list[12:14], 16),
+          int("0x" + sensor_list[14:16], 16)
+      ]))[0] * CONSTANTE_3
+
+  return [mag_x, mag_y, mag_z]
+
+
+
