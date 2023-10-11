@@ -3,6 +3,8 @@ import './Sensor.css'
 
 function Sensor() {
 
+  // dar o fetch na API que recebeu os dados da rasp.
+
   return (
     <div className='sensor-container'>
       
