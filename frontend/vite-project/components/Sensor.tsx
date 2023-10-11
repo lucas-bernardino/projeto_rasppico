@@ -1,9 +1,26 @@
 import './Sensor.css'
-
+import { useState, useEffect } from "react";
 
 function Sensor() {
 
   // dar o fetch na API que recebeu os dados da rasp.
+
+  const [sensorData, setSensorData] = useState([]);
+
+  async function getSensorData() {
+    const response = await fetch("http://127.0.0.1:3000/receber");
+    const data = await response.json();
+    setSensorData(data);
+    console.log(data);
+    //console.log(sensorData[0]);
+  }
+
+  useEffect(() => {
+    getSensorData();
+  }, []); //TEM QUE ARRUMAR O USEFFECT PQ ELE TEM Q DAR O FETCH TODA VEZ QUE OCORRER MUDANÇA NA API E NAO SO QUANDO RECARREGA A PAGINA
+
+  // SE NAO RODAR DA PRIMEIRA VEZ, PRECISA RODAR O SERVIDOR, RODAR O PYTHON REQUEST, COMENTAR TODO ESSE RETURN, CARREGAR A PAGINA, DEPOIS DESCOMENTA O RETURN E VAI ESTAR TUDO OK
+  // ARRUMAR ESSE BUG
 
   return (
     <div className='sensor-container'>
@@ -11,66 +28,75 @@ function Sensor() {
       <div className="sensor-box">
         <div className="sensor-title"> Velocidade </div>
         <div className="sensor-data-title">
-          Velocidade Angular X:
-          <div className="sensor-data-value">90.45</div>
+          Velocidade Angular X
+          <div className="sensor-data-value">{sensorData && sensorData[0]["vel_x"]}</div>
         </div>
         <div className="sensor-data-title">
-          Velocidade Angular Y:
-          <div className="sensor-data-value">80.87</div>
+          Velocidade Angular Y
+          <div className="sensor-data-value">{sensorData && sensorData[0]["vel_y"]}</div>
         </div>
         <div className="sensor-data-title">
-          Velocidade Angular Z:
-          <div className="sensor-data-value">70.12</div>
+          Velocidade Angular Z
+          <div className="sensor-data-value">{sensorData && sensorData[0]["vel_z"]}</div>
         </div>
       </div>
     
       <div className="sensor-box">
         <div className="sensor-title"> Aceleração </div>
         <div className="sensor-data-title">
-          Aceleracao Angular X:
-          <div className="sensor-data-value">90.45</div>
+          Aceleracao Angular X
+          <div className="sensor-data-value">{sensorData && sensorData[0]["acel_x"]}</div>
         </div>
         <div className="sensor-data-title">
-          Aceleracao Angular Y:
-          <div className="sensor-data-value">80.87</div>
+          Aceleracao Angular Y
+          <div className="sensor-data-value">{sensorData && sensorData[0]["acel_y"]}</div>
         </div>
         <div className="sensor-data-title">
-          Aceleracao Angular Z:
-          <div className="sensor-data-value">70.12</div>
+          Aceleracao Angular Z
+          <div className="sensor-data-value">{sensorData && sensorData[0]["acel_z"]}</div>
         </div>
       </div>
 
       <div className="sensor-box">
         <div className="sensor-title"> Eixo </div>
         <div className="sensor-data-title">
-          Roll:
-          <div className="sensor-data-value">90.45</div>
+          Roll
+          <div className="sensor-data-value">{sensorData && sensorData[0]["roll"]}</div>
         </div>
         <div className="sensor-data-title">
-          Pitch:
-          <div className="sensor-data-value">80.87</div>
+          Pitch
+          <div className="sensor-data-value">{sensorData && sensorData[0]["pitch"]}</div>
         </div>
         <div className="sensor-data-title">
-          Yaw:
-          <div className="sensor-data-value">70.12</div>
+          Yaw
+          <div className="sensor-data-value">{sensorData && sensorData[0]["yaw"]}</div>
         </div>
       </div>
     
       <div className="sensor-box">
         <div className="sensor-title"> Magnético </div>
         <div className="sensor-data-title">
-          Magnético X:
-          <div className="sensor-data-value">90.45</div>
+          Magnético X
+          <div className="sensor-data-value">{sensorData && sensorData[0]["mag_x"]}</div>
         </div>
         <div className="sensor-data-title">
-          Magnético Y:
-          <div className="sensor-data-value">80.87</div>
+          Magnético Y
+          <div className="sensor-data-value">{sensorData && sensorData[0]["mag_y"]}</div>
         </div>
         <div className="sensor-data-title">
-          Magnético Z:
-          <div className="sensor-data-value">70.12</div>
+          Magnético Z
+          <div className="sensor-data-value">{sensorData && sensorData[0]["mag_z"]}</div>
         </div>
       </div>
+
+      <div className="sensor-box">
+        <div className="sensor-title"> Temperatura </div>
+        <div className="sensor-data-title">
+          Temperatura Atual
+          <div className="sensor-data-value">{sensorData && sensorData[0]["temp"]}</div>
+        </div>
+      </div>
+
 
     </div>
   )

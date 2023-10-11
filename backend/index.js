@@ -1,12 +1,15 @@
 const express = require('express');
+const cors = require('cors');
 const app = express()
 
-let dados = [];
+let dados = []; // usar mongoDB ?
 
-app.use(express.json()); // Add this line to parse JSON data in POST requests
+app.use(express.json()); 
+app.use(cors());
 
 app.get('/receber', (req, res) => {
     res.json(dados);
+    res.send(dados)
 })
 
 

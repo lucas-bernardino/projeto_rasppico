@@ -1,5 +1,4 @@
 .sensor-container{
-    padding-top: 2%;
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -7,7 +6,7 @@
 }
 
 .sensor-box {
-    margin-top: 3.5%;
+    margin-top: 2%;
     display: flex;
     flex-direction: row;
     position: relative;
@@ -16,12 +15,8 @@
     background-color: rgb(44, 44, 44);
     color: white;
     height: 100px;
-    width: 500px;
+    width: 600px;
     align-items: center;
-}
-
-.sensor-data-title{
-    padding-top: 3%;
 }
 
 .sensor-title {
@@ -32,9 +27,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     padding-top: 5px;
-    font-weight: 900;
+    font-weight: 100;
+    font-family: Haettenschweiler;
+    color: rgba(5, 152, 215, 0.761);
+}
+
+.sensor-data-title{
+    padding-top: 7%;
+    font-weight: 400;
+    font-family:'Lucida Sans';
+    color: rgb(172, 225, 248);
 }
 
 .sensor-data-value {
