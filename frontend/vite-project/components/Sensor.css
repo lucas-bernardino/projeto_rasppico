@@ -14,9 +14,11 @@
     justify-content: space-around;
     background-color: rgb(44, 44, 44);
     color: white;
-    height: 100px;
+    height: 20%;
     width: 600px;
     align-items: center;
+    border-radius: 20px;
+    border: solid 2px rgba(5, 152, 215, 0.761);
 }
 
 .sensor-title {
@@ -35,7 +37,7 @@
 }
 
 .sensor-data-title{
-    padding-top: 7%;
+    padding-top: 7.8%;
     font-weight: 400;
     font-family:'Lucida Sans';
     color: rgb(172, 225, 248);

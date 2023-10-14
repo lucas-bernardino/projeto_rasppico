@@ -8,7 +8,7 @@ function Sensor() {
   const [sensorData, setSensorData] = useState([]);
 
   async function getSensorData() {
-    const response = await fetch("http://127.0.0.1:3000/receber");
+    const response = await fetch("http://127.0.0.1:3000/receber_ultimo");
     const data = await response.json();
     setSensorData(data);
     console.log(data);
@@ -19,7 +19,7 @@ function Sensor() {
 
     const interval = setInterval(() => {
       getSensorData();
-    }, 250);
+    }, 50);
 
     return () => clearInterval(interval);
   }, []); // https://iq.js.org/questions/react/how-to-update-a-component-every-second
