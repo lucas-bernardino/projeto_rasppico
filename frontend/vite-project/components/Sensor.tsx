@@ -19,7 +19,7 @@ function Sensor() {
 
     const interval = setInterval(() => {
       getSensorData();
-    }, 50);
+    }, 100);
 
     return () => clearInterval(interval);
   }, []); // https://iq.js.org/questions/react/how-to-update-a-component-every-second
@@ -94,6 +94,23 @@ function Sensor() {
         </div>
       </div>
 
+
+      <div className="sensor-box">
+        <div className="sensor-title"> Esterçamento </div>
+        <div className="sensor-data-title">
+          Graus
+          <div className="sensor-data-value">{sensorData[0] && sensorData[0]["temp"]}</div>
+        </div>
+      </div>
+
+      <div className="sensor-box">
+        <div className="sensor-title"> Rotações </div>
+        <div className="sensor-data-title">
+          RPM
+          <div className="sensor-data-value">{sensorData[0] && sensorData[0]["temp"]}</div>
+        </div>
+      </div>
+
       <div className="sensor-box">
         <div className="sensor-title"> Temperatura </div>
         <div className="sensor-data-title">
@@ -101,7 +118,6 @@ function Sensor() {
           <div className="sensor-data-value">{sensorData[0] && sensorData[0]["temp"]}</div>
         </div>
       </div>
-
 
     </div>
   )

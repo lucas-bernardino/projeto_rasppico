@@ -3,9 +3,11 @@
     padding: 0;
 }
 
-.page{
+.App{
     background-color: rgba(87, 87, 87, 0.996);
     width: 100%;
     height: 100vh;
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

@@ -1,7 +1,7 @@
 import requests
 
 dados_package = {
-    "id": "4",
+    "id": "1",
     "acel_x": "111.23",
     "acel_y": "95.54",
     "acel_z": "50.44",
@@ -14,10 +14,11 @@ dados_package = {
     "mag_x": "31.85",
     "mag_y": "54.47",
     "mag_z": "96.63",
-    "temp": "-33.65",
+    "temp": "123",
 }
 
 # Enviar para Mongo
+# NAO ESQUECER DE ACRESCENTAR O ID NO DICIONARIO
 res = requests.post('http://localhost:3000/enviar', json=dados_package)
 print(res.text)
 
