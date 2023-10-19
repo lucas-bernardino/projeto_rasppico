@@ -1,0 +1,25 @@
+.webcam-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.button-actions-div {
+    display: flex;
+}
+
+/* return (
+    <div className='webcam-container'>
+      <Webcam audio={false} ref={webcamRef} />
+      <div className="button-actions-div">
+        {capturing ? (
+          <button onClick={stopCapture}>Parar</button>
+        ) : (
+          <button onClick={startCapture}>Gravar</button>
+        )}
+        {recordedChunks.length > 0 && (
+          <button onClick={downloadVideo}>Download</button>
+        )}
+      </div>
+    </div>
+  );
+}; */

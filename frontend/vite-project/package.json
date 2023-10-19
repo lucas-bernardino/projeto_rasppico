@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -12,7 +12,10 @@
   "dependencies": {
     "cross-env": "^7.0.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-media-recorder": "^1.6.6",
+    "react-record-webcam": "^1.0.0",
+    "react-webcam": "^7.1.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
