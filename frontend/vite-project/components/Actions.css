@@ -1,0 +1,26 @@
+.additional-info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.action-div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-family: 'Lucida Sans Unicode';
+    font-weight: bolder;
+    cursor: pointer;
+
+}
+
+.icon{
+    color: rgba(255, 251, 0, 0.817);
+    font-size: 40px;
+    transition: 0.3s;
+}
+
+.icon:hover{
+    color: rgba(200, 197, 3, 0.817);
+}

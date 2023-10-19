@@ -14,7 +14,7 @@ def hall_trigger(input):
 
 def freq_update(input):
     global counter, U_min
-    U_min = int(counter/(period/1000)*60)
+    U_min = int(counter/(period/1000)*60) # RPM
     counter = 0
 
 hall.irq(trigger=Pin.IRQ_FALLING, handler=hall_trigger)
@@ -24,3 +24,9 @@ timer = Timer(period=period, mode=Timer.PERIODIC, callback=freq_update)
 while True:
     time.sleep(1)
     print(U_min)
+
+#link de onde eu tirei esse codigo: https://www.youtube.com/watch?v=ZY6ydOIJIU4
+
+# outro código que parece ser bom: https://github.com/robert-hh/RP2040-Examples/tree/master/pulses
+
+# tem outro codigo que parece ser bom nesse link: https://raspberrypi.stackexchange.com/questions/62339/measure-rpm-using-hall-sensor-and-pigpio

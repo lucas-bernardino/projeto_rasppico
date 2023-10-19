@@ -6,8 +6,16 @@
 .App{
     background-color: rgba(87, 87, 87, 0.996);
     width: 100%;
-    height: 100vh;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.webcam-info {
+    display: flex;
+    margin-left: 2rem;
+    margin-bottom: 5rem;
+    align-items: center;
+    gap: 2%;
 }

@@ -11,7 +11,7 @@ function Sensor() {
     const response = await fetch("http://150.162.217.45:3000/receber_ultimo");
     const data = await response.json();
     setSensorData(data);
-    console.log(data);
+    // console.log(data);
     //console.log(sensorData[0]);
   }
 

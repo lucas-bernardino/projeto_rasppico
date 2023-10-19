@@ -65,5 +65,3 @@ app.post('/enviar', async (req, res) => {
 // senha: motobmwufsc
 
 // mongoose: username: admin ; senha: root
-// mongodb+srv://admin:<password>@motobmw.9krdce4.mongodb.net/?retryWrites=true&w=majority
-// mongodb+srv://admin:root@motobmw.9krdce4.mongodb.net/Node-API?retryWrites=true&w=majority
