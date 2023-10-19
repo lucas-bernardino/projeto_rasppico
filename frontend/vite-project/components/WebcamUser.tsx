@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
-import './CustomWebcam.css';
+import './WebcamUser.css';
 
 
 export default function TentaivaWebcam() {
