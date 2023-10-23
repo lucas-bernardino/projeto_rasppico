@@ -12,8 +12,7 @@ function App() {
         <Sensor />
       </div>
       <div className="webcam-info">
-        {/* <Webcam width={800} height={400}/> */}
-        <WebcamUser />
+        {/* <WebcamUser /> */}
         <Action />
       </div>
     </div>

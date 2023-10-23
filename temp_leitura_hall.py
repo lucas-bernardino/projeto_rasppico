@@ -6,7 +6,7 @@ period = 5000
 counter = 0
 U_min = 0
 
-hall = Pin(10, Pin.IN, Pin.PULL_UP)
+hall = Pin(11, Pin.IN, Pin.PULL_UP)
 
 def hall_trigger(input):
     global counter
@@ -22,8 +22,10 @@ hall.irq(trigger=Pin.IRQ_FALLING, handler=hall_trigger)
 timer = Timer(period=period, mode=Timer.PERIODIC, callback=freq_update)
 
 while True:
-    time.sleep(1)
-    print(U_min)
+    #time.sleep(1)
+    valor = U_min
+    if valor != 0:
+        print(valor)
 
 #link de onde eu tirei esse codigo: https://www.youtube.com/watch?v=ZY6ydOIJIU4
 

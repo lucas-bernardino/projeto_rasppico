@@ -8,7 +8,7 @@ function Sensor() {
   const [sensorData, setSensorData] = useState([]);
 
   async function getSensorData() {
-    const response = await fetch("http://150.162.217.45:3000/receber_ultimo");
+    const response = await fetch("http://localhost:3000/receber_ultimo");
     const data = await response.json();
     setSensorData(data);
     // console.log(data);
@@ -31,34 +31,42 @@ function Sensor() {
     <div className='sensor-container'>
       
       <div className="sensor-box">
-        <div className="sensor-title"> Velocidade </div>
+        <div className="sensor-title" > Velocidade Angular</div>
         <div className="sensor-data-title">
           Velocidade Angular X
-          <div className="sensor-data-value">{sensorData[0] && sensorData[0]["vel_x"]}</div>
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["vel_x"]).toFixed(2)}</div>
         </div>
         <div className="sensor-data-title">
           Velocidade Angular Y
-          <div className="sensor-data-value">{sensorData[0] && sensorData[0]["vel_y"]}</div>
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["vel_y"]).toFixed(2)}</div>
         </div>
         <div className="sensor-data-title">
           Velocidade Angular Z
-          <div className="sensor-data-value">{sensorData[0] && sensorData[0]["vel_z"]}</div>
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["vel_z"]).toFixed(2)}</div>
+        </div>
+        <div className="sensor-data-title">
+          Módulo
+          <div className="sensor-data-value">{sensorData[0] && Number(Math.sqrt((sensorData[0]["vel_x"])**2 + (sensorData[0]["vel_y"])**2 + (sensorData[0]["vel_z"])**2)).toFixed(2)}</div>
         </div>
       </div>
     
       <div className="sensor-box">
         <div className="sensor-title"> Aceleração </div>
         <div className="sensor-data-title">
-          Aceleracao Angular X
-          <div className="sensor-data-value">{sensorData[0] && sensorData[0]["acel_x"]}</div>
+          Aceleração X
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["acel_x"]).toFixed(2)}</div>
         </div>
         <div className="sensor-data-title">
-          Aceleracao Angular Y
-          <div className="sensor-data-value">{sensorData[0] && sensorData[0]["acel_y"]}</div>
+          Aceleração Y
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["acel_y"]).toFixed(2)}</div>
         </div>
         <div className="sensor-data-title">
-          Aceleracao Angular Z
-          <div className="sensor-data-value">{sensorData[0] && sensorData[0]["acel_z"]}</div>
+          Aceleração Z
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["acel_z"]).toFixed(2)}</div>
+        </div>
+        <div className="sensor-data-title">
+          Módulo
+          <div className="sensor-data-value">{sensorData[0] && Number(Math.sqrt((sensorData[0]["acel_x"])**2 + (sensorData[0]["acel_y"])**2 + (sensorData[0]["acel_z"])**2)).toFixed(2)}</div>
         </div>
       </div>
 
@@ -66,15 +74,19 @@ function Sensor() {
         <div className="sensor-title"> Eixo </div>
         <div className="sensor-data-title">
           Roll
-          <div className="sensor-data-value">{sensorData[0] && sensorData[0]["roll"]}</div>
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["roll"]).toFixed(2)}</div>
         </div>
         <div className="sensor-data-title">
           Pitch
-          <div className="sensor-data-value">{sensorData[0] && sensorData[0]["pitch"]}</div>
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["pitch"]).toFixed(2)}</div>
         </div>
         <div className="sensor-data-title">
           Yaw
-          <div className="sensor-data-value">{sensorData[0] && sensorData[0]["yaw"]}</div>
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["yaw"]).toFixed(2)}</div>
+        </div>
+        <div className="sensor-data-title">
+          Módulo
+          <div className="sensor-data-value">{sensorData[0] && Number(Math.sqrt((sensorData[0]["roll"])**2 + (sensorData[0]["pitch"])**2 + (sensorData[0]["yaw"])**2)).toFixed(2)}</div>
         </div>
       </div>
     
@@ -82,15 +94,19 @@ function Sensor() {
         <div className="sensor-title"> Magnético </div>
         <div className="sensor-data-title">
           Magnético X
-          <div className="sensor-data-value">{sensorData[0] && sensorData[0]["mag_x"]}</div>
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["mag_x"]).toFixed(2)}</div>
         </div>
         <div className="sensor-data-title">
           Magnético Y
-          <div className="sensor-data-value">{sensorData[0] && sensorData[0]["mag_y"]}</div>
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["mag_y"]).toFixed(2)}</div>
         </div>
         <div className="sensor-data-title">
           Magnético Z
-          <div className="sensor-data-value">{sensorData[0] && sensorData[0]["mag_z"]}</div>
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["mag_z"]).toFixed(2)}</div>
+        </div>
+        <div className="sensor-data-title">
+          Módulo
+          <div className="sensor-data-value">{sensorData[0] && Number(Math.sqrt((sensorData[0]["mag_x"])**2 + (sensorData[0]["mag_y"])**2 + (sensorData[0]["mag_z"])**2)).toFixed(2)}</div>
         </div>
       </div>
 
@@ -99,7 +115,7 @@ function Sensor() {
         <div className="sensor-title"> Esterçamento </div>
         <div className="sensor-data-title">
           Graus
-          <div className="sensor-data-value">{sensorData[0] && sensorData[0]["temp"]}</div>
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["temp"]).toFixed(2)}</div>
         </div>
       </div>
 
@@ -107,7 +123,7 @@ function Sensor() {
         <div className="sensor-title"> Rotações </div>
         <div className="sensor-data-title">
           RPM
-          <div className="sensor-data-value">{sensorData[0] && sensorData[0]["temp"]}</div>
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["temp"]).toFixed(2)}</div>
         </div>
       </div>
 
@@ -115,7 +131,7 @@ function Sensor() {
         <div className="sensor-title"> Temperatura </div>
         <div className="sensor-data-title">
           Temperatura Atual
-          <div className="sensor-data-value">{sensorData[0] && sensorData[0]["temp"]}</div>
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["temp"]).toFixed(2)}</div>
         </div>
       </div>
 

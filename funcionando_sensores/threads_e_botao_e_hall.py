@@ -13,7 +13,7 @@ led = Pin(25, Pin.OUT)
 interrupt_flag = False
 debounce_time = 0
 
-hall = Pin(10, Pin.IN, Pin.PULL_UP)
+hall = Pin(11, Pin.IN, Pin.PULL_UP)
 
 
 # LIDAR COM O UnicodeError
