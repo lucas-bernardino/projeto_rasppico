@@ -135,6 +135,14 @@ function Sensor() {
         </div>
       </div>
 
+      <div className="sensor-box">
+        <div className="sensor-title"> Velocidade </div>
+        <div className="sensor-data-title">
+          Velocidade Linear Atual
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["temp"]).toFixed(2)}</div>
+        </div>
+      </div>
+
     </div>
   )
 }

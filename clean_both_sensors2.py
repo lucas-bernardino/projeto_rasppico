@@ -1,7 +1,7 @@
 import struct
 import pandas as pd
 from save_raw_data_pc2 import saveRawData
-from handle_sensors_module import handleSensor1, handleSensor2, handleSensor3, handleSensor4
+from handle_sensors_module import handleSensor1, handleSensor2, handleSensor3, handleSensor4, handleSensor5, handleSensor6, handleSensor7
 
 saveRawData()
 
@@ -27,8 +27,11 @@ for n in range( n_times ):
                 acel_x, acel_y, acel_z, temp = handleSensor1(data[0:22])
                 vel_x, vel_y, vel_z = handleSensor2(data[22:44])
                 roll, pitch, yall = handleSensor3(data[44:66])
-                mag_x, mag_y, mag_z = handleSensor4(data[66:])
-                angle = data[88:]
+                mag_x, mag_y, mag_z = handleSensor4(data[66:88])
+                air_press, altitude = handleSensor5(data[88:110])
+                longitude, latitude = handleSensor6(data[110:132])
+                velocidade_gps = handleSensor7(data[132:154])
+                angle = data[176:]
 
                 dict_data = {
                     "Aceleracao X": acel_x,
@@ -44,6 +47,11 @@ for n in range( n_times ):
                     "Magnetico X": mag_x,
                     "Magnetico Y": mag_y,
                     "Magnetico Z": mag_z,
+                    "Pressao do Ar": air_press,
+                    "Altitude": altitude,
+                    "Longitude": longitude,
+                    "Latitude": latitude,
+                    "Velocidade GPS": velocidade_gps,
                     "Angulo": angle, 
                 }
                 list_of_dicts.append(dict_data)

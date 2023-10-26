@@ -3,7 +3,7 @@ import subprocess
 def saveNumberOfFiles():
   number_files_pico = "number.txt"
   number_files_pc = "number_pc.txt"
-  com_port = "COM6" 
+  com_port = "COM9" 
 
   with open("number_pc.txt", "w") as create_file:
     pass
@@ -20,13 +20,14 @@ def saveRawData():
     saveNumberOfFiles()
     
     number = open("number_pc.txt", "r")
+  
     
     n_times = int(number.read()[-1]) + 1
     
     for n in range( n_times ):
         file_pico = f"dados{str(n)}.txt"
         file_pc = f"dados_pc{str(n)}.txt"
-        com_port = "COM6"
+        com_port = "COM9"
         
         with open(file_pc, "w") as f:
             pass

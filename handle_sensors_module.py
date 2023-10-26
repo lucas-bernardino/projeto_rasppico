@@ -108,4 +108,17 @@ def handleSensor4(sensor_list):
   return [mag_x, mag_y, mag_z]
 
 
+def handleSensor5(sensor_list):
+    air_press_atm = float((int("0x" + sensor_list[10:12], 16) << 24 ) | int("0x" + sensor_list[8:10], 16) << 16  | int("0x" + sensor_list[6:8], 16) << 8  | int("0x" + sensor_list[4:6], 16)) / 101325  
+    altitude_m = float((int("0x" + sensor_list[18:20], 16) << 24 ) | int("0x" + sensor_list[16:18], 16) << 16  | int("0x" + sensor_list[14:16], 16) << 8  | int("0x" + sensor_list[12:14], 16)) / 100
+    return [air_press_atm, altitude_m]
 
+
+def handleSensor6(sensor_list):
+    longtitude = float((int("0x" + sensor_list[10:12], 16) << 24 ) | int("0x" + sensor_list[8:10], 16) << 16  | int("0x" + sensor_list[6:8], 16) << 8  | int("0x" + sensor_list[4:6], 16))  
+    latitude = float((int("0x" + sensor_list[18:20], 16) << 24 ) | int("0x" + sensor_list[16:18], 16) << 16  | int("0x" + sensor_list[14:16], 16) << 8  | int("0x" + sensor_list[12:14], 16))
+    return [longtitude, latitude]
+
+def handleSensor7(sensor_list):
+    velocidade_gps = float((int("0x" + sensor_list[18:20], 16) << 24 ) | int("0x" + sensor_list[16:18], 16) << 16  | int("0x" + sensor_list[14:16], 16) << 8  | int("0x" + sensor_list[12:14], 16)) / 1000
+    return velocidade_gps

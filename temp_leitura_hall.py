@@ -22,10 +22,8 @@ hall.irq(trigger=Pin.IRQ_FALLING, handler=hall_trigger)
 timer = Timer(period=period, mode=Timer.PERIODIC, callback=freq_update)
 
 while True:
-    #time.sleep(1)
-    valor = U_min
-    if valor != 0:
-        print(valor)
+    if U_min != 0:
+        print(U_min)
 
 #link de onde eu tirei esse codigo: https://www.youtube.com/watch?v=ZY6ydOIJIU4
 

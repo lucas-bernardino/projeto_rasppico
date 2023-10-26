@@ -3,7 +3,7 @@ import _thread
 from machine import UART, Pin
 import binascii
 
-uart_sensor_wt901 = UART(0, baudrate=9600, tx=Pin(0), rx=Pin(1)) #Sensor A
+uart_sensor_wt901 = UART(1, baudrate=9600, tx=Pin(4), rx=Pin(5)) #Sensor A
 uart_sensor_jyme01 = UART(1, baudrate=9600, tx=Pin(8), rx=Pin(9)) #Sensor B
 data_sensors = ""
 
@@ -28,87 +28,87 @@ def callback(pin):
         interrupt_flag = not interrupt_flag
         debounce_time=time.ticks_ms()
         print("Estou na CALLBACK")
-        
-        lock.release() 
-        
+
+        lock.release()
+
 button.irq(trigger=Pin.IRQ_FALLING, handler=callback)
 
 def core0_thread():
-    
+
     global run_core_1
     global data_sensors
     global cont
     global lock
 
     while interrupt_flag:
-        
-        
+
+
         sensor_a = uart_sensor_wt901.read()
-        
+
         if sensor_a:
-            
+
             # print("ESTOU NO CORE0")
-            
+
             sensor_a_decoded = binascii.hexlify(sensor_a).decode('utf-8')
-            
+
 
             if len(sensor_a_decoded) == 88 and sensor_a_decoded[0:4] == "5551" and sensor_a_decoded[22:26] == "5552" and sensor_a_decoded[44:48] == "5553" and sensor_a_decoded[66:70] == "5554":
-                
+
                 lock.acquire()
-                
+
                 data_sensors = ""
                 data_sensors += sensor_a_decoded
-                
+
                 lock.release()
-    
+
     sensor_a_decoded = ""
 
- 
-cont = 0   
+
+cont = 0
 
 def core1_thread():
-    
+
     global run_core_1
     global data_sensors
     global cont
     global lock
 
     while interrupt_flag:
-        
-        
+
+
         sensor_b = uart_sensor_jyme01.read()
-        
+
         if sensor_b:
-    
+
             # print("ESTOU NO CORE1")
-        
+
             sensor_b_decoded = (sensor_b.decode('utf-8')).replace("Angle:","").rstrip()
-        
+
             if len(data_sensors) == 88:
-                
+
                 lock.acquire()
-                
+
                 print("LEITURA HALL: ", hall.value())
-                
+
                 data_sensors += sensor_b_decoded
                 if len(data_sensors) > 20:
-                          
-                    arquivo.write(data_sensors + "\n")   
+
+                    arquivo.write(data_sensors + "\n")
                     print("DADOS COMBINADOS: ", data_sensors)
-                
+
                 data_sensors = ""
-                
+
                 lock.release()
-                
-    
+
+
     sensor_b_decoded = ""
     data_sensors = ""
-    
+
 
 
 
 lock = _thread.allocate_lock()
- 
+
 # second_thread = _thread.start_new_thread(core1_thread, ())
 
 # core0_thread()
@@ -127,18 +127,22 @@ while True:
             write_number.close()
         except Exception as e:
             print(e)
-            arquivo = open("dados0.txt", "a")        
+            arquivo = open("dados0.txt", "a")
             write_number = open('number.txt', 'a')
             write_number.write('0')
             write_number.close()
 
         second_thread = _thread.start_new_thread(core1_thread, ())
         core0_thread()
-        
+
         data_sensors = ""
 
         print("apos as threads")
-        
 
 
 
+
+
+
+
+# CODIG PRA HALL COM A RASP PI https://forums.raspberrypi.com/viewtopic.php?t=151465 (UTILIZA UM HALL UNIPOLAR)

@@ -141,6 +141,7 @@ def callback(msg):
         print(res.text)
         
         id_cont += 1
+        
 
 
 imu = IMU("COM5") 
