@@ -7,6 +7,7 @@ const sensorSchema = mongoose.Schema (
             required : true,
             default: -99
         },
+        
         acel_x : {
             type: Number,
             required: true,
@@ -22,6 +23,7 @@ const sensorSchema = mongoose.Schema (
             required: true,
             default: -99
         },
+
         vel_x : {
             type: Number,
             required: true,
@@ -37,6 +39,7 @@ const sensorSchema = mongoose.Schema (
             required: true,
             default: -99
         },
+
         roll : {
             type: Number,
             required: true,
@@ -52,6 +55,7 @@ const sensorSchema = mongoose.Schema (
             required: true,
             default: -99
         },
+
         mag_x : {
             type: Number,
             required: true,
@@ -67,11 +71,53 @@ const sensorSchema = mongoose.Schema (
             required: true,
             default: -99
         },
+
         temp : {
             type: Number,
             required: true,
             default: -99
+        },
+
+        esterc : {
+            type: Number,
+            required: true,
+            default: -99,
+        },
+
+        rot : {
+            type: Number,
+            required: true,
+            default: -99,
+        },
+
+        veloc : {
+            type: Number,
+            required: true,
+            default: -99,
+        },
+
+        long : {
+            type: Number,
+            required: true,
+            default: -99,
+        },
+        lat : {
+            type: Number,
+            required: true,
+            default: -99,
+        },
+
+        press_ar : {
+            type: Number,
+            required: true,
+            default: -99,
+        },
+        altitude : {
+            type : Number,
+            required : true,
+            default: -99,
         }
+
     },
     {
         timestamps: true

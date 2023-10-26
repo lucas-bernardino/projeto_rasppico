@@ -8,7 +8,7 @@ function Sensor() {
   const [sensorData, setSensorData] = useState([]);
 
   async function getSensorData() {
-    const response = await fetch("http://localhost:3000/receber_ultimo");
+    const response = await fetch("http://150.162.217.130:3000/receber_ultimo");
     const data = await response.json();
     setSensorData(data);
     // console.log(data);
@@ -115,7 +115,7 @@ function Sensor() {
         <div className="sensor-title"> Esterçamento </div>
         <div className="sensor-data-title">
           Graus
-          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["temp"]).toFixed(2)}</div>
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["esterc"]).toFixed(2)}</div>
         </div>
       </div>
 
@@ -123,7 +123,7 @@ function Sensor() {
         <div className="sensor-title"> Rotações </div>
         <div className="sensor-data-title">
           RPM
-          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["temp"]).toFixed(2)}</div>
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["rot"]).toFixed(2)}</div>
         </div>
       </div>
 
@@ -139,9 +139,34 @@ function Sensor() {
         <div className="sensor-title"> Velocidade </div>
         <div className="sensor-data-title">
           Velocidade Linear Atual
-          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["temp"]).toFixed(2)}</div>
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["veloc"]).toFixed(2)}</div>
         </div>
       </div>
+
+      <div className="sensor-box">
+        <div className="sensor-title"> Posição </div>
+        <div className="sensor-data-title">
+          Longitude:
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["long"]).toFixed(2)}</div>
+        </div>
+        <div className="sensor-data-title">
+          Latitude:
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["lat"]).toFixed(2)}</div>
+        </div>
+      </div>
+
+      <div className="sensor-box">
+        <div className="sensor-title"> Pressão </div>
+        <div className="sensor-data-title">
+          Pressão do Ar:
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["press_ar"]).toFixed(2)}</div>
+        </div>
+        <div className="sensor-data-title">
+          Altitude:
+          <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["altitude"]).toFixed(2)}</div>
+        </div>
+      </div>
+
 
     </div>
   )

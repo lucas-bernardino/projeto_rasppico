@@ -15,6 +15,13 @@ dados_package = {
     "mag_y": "54.47",
     "mag_z": "96.63",
     "temp": "123",
+    "esterc": "541",
+    "rot": "432",
+    "veloc": "543",
+    "long": "21",
+    "lat": "54",
+    "press_ar": "1000",
+    "altitude": "23443",
 }
 
 # Enviar para Mongo
