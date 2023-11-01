@@ -95,6 +95,16 @@ def core1_thread():
 
                     arquivo.write(data_sensors + "\n")
                     print("DADOS COMBINADOS: ", data_sensors)
+                    # except Exception as e:
+                    #     read_number = open('number.txt', 'r')
+                    #     last_number = int(read_number.read()[-1])
+                    #     arquivo = open(f"dados{str(last_number + 1)}.txt", "a")
+                    #     write_number = open('number.txt', 'w')
+                    #     write_number.write(str(last_number + 1))
+                    #     read_number.close()
+                    #     write_number.close()
+                    #     print(e)
+                    #     break
 
                 data_sensors = ""
 
@@ -112,6 +122,8 @@ lock = _thread.allocate_lock()
 # second_thread = _thread.start_new_thread(core1_thread, ())
 
 # core0_thread()
+
+
 
 while True:
     if interrupt_flag:
@@ -147,3 +159,10 @@ while True:
 
 
 # CODIG PRA HALL COM A RASP PI https://forums.raspberrypi.com/viewtopic.php?t=151465 (UTILIZA UM HALL UNIPOLAR)
+
+
+
+# Unhandled exception in thread started by <function core1_thread at 0x2002d7e0>
+# Traceback (most recent call last):
+#   File "<stdin>", line 96, in core1_thread
+# OSError: 28

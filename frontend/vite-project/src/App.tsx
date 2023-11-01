@@ -2,6 +2,8 @@ import './App.css'
 import Sensor from '../components/Sensor'
 import WebcamUser from '../components/WebcamUser';
 import Action from '../components/Action';
+import Chart from '../components/Chart';
+import SendChart from '../components/SendChart';
 
 
 function App() {
@@ -14,6 +16,9 @@ function App() {
       <div className="webcam-info">
         {/* <WebcamUser /> */}
         <Action />
+      </div>
+      <div>
+        <SendChart />
       </div>
     </div>
   )
