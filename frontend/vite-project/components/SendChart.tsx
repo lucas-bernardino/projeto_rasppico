@@ -6,7 +6,7 @@ const SendChart = () => {
 
     const [sensorData, setSensorData] = useState();
     async function fetchData() {
-        const response = await fetch("http://150.162.217.130:3000/receber_ultimo");
+        const response = await fetch("http://150.162.217.34:3001/receber_ultimo");
         const data = await response.json();
         setSensorData(data);
         // console.log(data);
