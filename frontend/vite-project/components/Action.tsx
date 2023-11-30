@@ -2,14 +2,18 @@ import { FaDownload, FaPlay } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { BsFileBarGraphFill } from "react-icons/bs";
 import {BiStopwatch} from "react-icons/bi";
+import Grafico from "./Grafico"
 
 import "./Actions.css";
+import { useState } from "react";
 
 function Action () {
 
+    const [flagShow, setFlagShow] = useState(false);
+
     const handleDownload = async () => {
         try {
-            const response = await fetch('http://150.162.217.34:5000/csv');
+            const response = await fetch('http://150.162.217.186:5000/csv');
             const blob = await response.blob();
             const url = window.URL.createObjectURL(new Blob([blob]));
             const link = document.createElement('a');
@@ -31,14 +35,15 @@ function Action () {
             <div className="ac2 action-div">
             <AiFillDelete className="icon" />DELETAR
             </div>
-            <div className="ac3 action-div">
-            <BsFileBarGraphFill className="icon" />GRÁFICOS
+            <div className="ac3 action-div" onClick={() => {setFlagShow(!flagShow)}}>
+            <BsFileBarGraphFill className="icon" onClick={() => {setFlagShow(!flagShow)}} />GRÁFICOS
+            <Grafico flagShow={flagShow}/>
             </div>
             <div className="ac4 action-div">
             <BiStopwatch className="icon" />PARAR
             </div>
             <div className="ac5 action-div" onClick={handleDownload}>
-            <FaDownload className="icon" />BAIXAR
+            <FaDownload className="icon" onClick={handleDownload} />BAIXAR
             </div>
         </div>
     )

@@ -8,7 +8,7 @@ CORS(app)
 
 @app.route('/csv')
 def get_csv():
-    all_data = requests.get("http://150.162.217.34:3001/receber").json()
+    all_data = requests.get("http://150.162.217.186:3001/receber").json() # http://150.162.217.34:3001/receber
 
     df = pd.DataFrame(data=all_data)
     df = df.drop(['_id', 'id', 'createdAt', '__v'], axis=1)
