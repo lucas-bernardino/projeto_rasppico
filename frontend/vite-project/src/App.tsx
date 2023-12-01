@@ -9,22 +9,18 @@ import SendChart from '../components/SendChart';
 function App() {
 
   return (
-    <div className="App">
+    <div className="app">
       <div className="sensor-div">
         <Sensor />
       </div>
-      <div className="webcam-info">
-        {/* <WebcamUser /> */}
+      <div className="div-action">
         <Action />
-      </div>
-      <div>
-        <SendChart />
       </div>
     </div>
   )
 }
 
-export default App
+export default App;
 
 // https://github.com/samuelweckstrom/react-record-webcam
 

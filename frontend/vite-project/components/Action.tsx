@@ -30,20 +30,22 @@ function Action () {
     return (
         <div className="additional-info">
             <div className="ac1 action-div">
-            <FaPlay className="icon" /> MONITORAR
+                <FaPlay className="icon" /> MONITORAR
             </div>
             <div className="ac2 action-div">
-            <AiFillDelete className="icon" />DELETAR
+                <AiFillDelete className="icon" />DELETAR
             </div>
-            <div className="ac3 action-div" onClick={() => {setFlagShow(!flagShow)}}>
-            <BsFileBarGraphFill className="icon" onClick={() => {setFlagShow(!flagShow)}} />GRÁFICOS
-            <Grafico flagShow={flagShow}/>
+            <div className="grafico-container">
+                <div className="ac3 action-div" onClick={() => {setFlagShow(!flagShow)}}>
+                    <BsFileBarGraphFill className="icon" onClick={() => {setFlagShow(!flagShow)}} />GRÁFICOS
+                </div>
+                <Grafico flagShow={flagShow}/>
             </div>
             <div className="ac4 action-div">
-            <BiStopwatch className="icon" />PARAR
+                <BiStopwatch className="icon" />PARAR
             </div>
             <div className="ac5 action-div" onClick={handleDownload}>
-            <FaDownload className="icon" onClick={handleDownload} />BAIXAR
+                <FaDownload className="icon" onClick={handleDownload} />BAIXAR
             </div>
         </div>
     )

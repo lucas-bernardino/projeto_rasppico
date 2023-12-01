@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-.App{
+.app{
     background-color: rgba(87, 87, 87, 0.996);
     width: 100%;
     min-height: 100vh;
@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-.webcam-info {
+.div-action {
     display: flex;
     align-items: center;
     justify-content: center;

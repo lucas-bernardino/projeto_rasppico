@@ -48,7 +48,7 @@ interface ChartData {
     }[];
   }
 
-const MyChart = ({ sensor_data }: DataProps) => {
+const ChartTeste = ({ sensor_data }: DataProps) => {
 
     const [chart1, setChart1] = useState<ChartData | null>(null);
 
@@ -78,12 +78,17 @@ const MyChart = ({ sensor_data }: DataProps) => {
 
     let [pontosY9, setPontosY9] = useState<number[]>([]);
 
+
+    const [chart4, setChart4] = useState<ChartData | null>(null);
+
+    let [pontosY10, setPontosY10] = useState<number[]>([]);
+
+
     useEffect(() => {
 
         if (sensor_data && sensor_data.length > 0)
         {
 
-            //console.log(pontosY2.length)
             if (createdAt.length === 50)
             {
               setCreatedAt(prevCreatedAt => prevCreatedAt.slice(20));
@@ -99,6 +104,9 @@ const MyChart = ({ sensor_data }: DataProps) => {
               setPontosY7(prevPontosY7 => prevPontosY7.slice(20));
               setPontosY8(prevPontosY8 => prevPontosY8.slice(20));
               setPontosY9(prevPontosY9 => prevPontosY9.slice(20));
+            
+              setPontosY10(prevPontosY10 => prevPontosY10.slice(20));
+            
             }
             
             setCreatedAt(prevCreatedAt => [...prevCreatedAt, sensor_data[0]["createdAt"].slice(11, 19)]);
@@ -113,6 +121,8 @@ const MyChart = ({ sensor_data }: DataProps) => {
             setPontosY7(prevPontosY7 => [...prevPontosY7, sensor_data[0]["roll"]]);
             setPontosY8(prevPontosY8 => [...prevPontosY8, sensor_data[0]["pitch"]]);
             setPontosY9(prevPontosY9 => [...prevPontosY9, sensor_data[0]["yaw"]]);
+
+            setPontosY10(prevPontosY10 => [...prevPontosY10, sensor_data[0]["esterc"]]);
 
     
             setChart1({
@@ -264,6 +274,47 @@ const MyChart = ({ sensor_data }: DataProps) => {
                 ]
           })
 
+          setChart4({
+            options: {
+                chart: {
+                  id: "realtime",
+                  height: 350,
+                  type: 'line',
+                },
+                xaxis: {
+                  categories: createdAt,
+                  axisTicks: {
+                    show: true, // Show X-axis ticks
+                    color: '#ff0000', // Set the color of X-axis ticks
+                  },
+                  labels: {
+                    style: {
+                      colors: '#ff0000', // Set the color of X-axis labels
+                    },
+                  },
+                },
+                yaxis: {
+                  min: 0,
+                  max: 360,
+                  labels: {
+                    style: {
+                      colors: ['#00ff00'], // Set the color of Y-axis labels
+                    },
+                  },
+                  axisTicks: {
+                    show: true, // Show Y-axis ticks
+                    color: '#0000ff', // Set the color of Y-axis ticks
+                  },
+                },
+              },
+              series: [
+                {
+                  name: "Estercamento",
+                  data: pontosY10
+                }
+              ]
+        })
+
         }
 
         
@@ -273,35 +324,41 @@ const MyChart = ({ sensor_data }: DataProps) => {
     
 
     return (
-        <div className="chart-container">
-            <div className="sensor-chart">
-            {chart1 &&
-            <Chart 
-            options={chart1.options}
-            series={chart1.series}
-            width={1000}
-            type="line"
-            />}
-            {/* {chart2 &&
-            <Chart 
-            options={chart2.options}
-            series={chart2.series}
-            width={1000}
-            type="line"
-            />}
-            {chart3 &&
-            <Chart 
-            options={chart3.options}
-            series={chart3.series}
-            width={1000}
-            type="line"
-            />} */}
-            </div>
-        </div>
+      <div className="sensor-chart">
+      {chart1 &&
+      <Chart 
+      options={chart1.options}
+      series={chart1.series}
+      width={600}
+      type="line"
+      />}
+      {/* {chart2 &&
+      <Chart 
+      options={chart2.options}
+      series={chart2.series}
+      width={600}
+      type="line"
+      />}
+      {chart3 &&
+      <Chart 
+      options={chart3.options}
+      series={chart3.series}
+      width={600}
+      type="line"
+      />} */}
+      {chart4 &&
+      <Chart 
+      options={chart4.options}
+      series={chart4.series}
+      width={600}
+      type="line"
+      />}
+      
+      </div>
     )
 }
 
-export default MyChart;
+export default ChartTeste;
 
 // https://www.youtube.com/watch?v=yAI9fbbH-rM
 

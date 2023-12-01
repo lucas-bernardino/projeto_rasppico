@@ -1,6 +1,41 @@
-.container{
+.page-container{
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid red;
+    gap: 10px;
+}
+
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    border-radius: 15px;
+}
+
+.opcao{
+    display: flex;
+    gap: 20px;
+    font-family: 'Lucida Sans Unicode';
+    font-weight: bolder;
+    color: white;
+}
+
+.icons-div{
+    display: flex;
+    gap: 10px;
+}
+
+.icon-mark{
+    color: rgba(255, 251, 0, 0.817);
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.icon-mark:hover{
+    color: rgba(200, 197, 3, 0.817);
+}
+
+.container-chart {
+    display: flex;
 }
