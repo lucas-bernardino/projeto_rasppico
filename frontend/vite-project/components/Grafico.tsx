@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "./Grafico.css"
 
-import { FaXmark } from "react-icons/fa6";
-import { IoCheckmarkSharp } from "react-icons/io5";
+import { MdOutlineToggleOff } from "react-icons/md";
+import { MdOutlineToggleOn } from "react-icons/md";
 import ChartTeste from "./ChartTeste";
 
 interface Choice {
@@ -40,14 +40,6 @@ function Grafico ({flagShow} : GraficoProps) {
         outros: false
     })
 
-    // TODO: VER COMO MUDAR A INTERFACE A CADA CLICK SEM ALTERAR OS OUTROS VALORES PRA PODER MOSTRAR UM GRAFICO DE CADA VEZ.
-
-// You can use the spread operator (...) to keep the previous state and only change the specific property you want. Here’s how you can do it:
-
-// <IoCheckmarkSharp className="icon-mark" onClick={() => setEnumChoice(prevState => ({...prevState, velocidade: !prevState.velocidade}))}/>
-
-// In this example, when the IoCheckmarkSharp icon is clicked, it will toggle the velocidade property of the enumChoice state while keeping the other properties unchanged. You can do the same for the other properties as well. Just replace velocidade with the property you want to change. This way, you can change the values inside of your enumChoice without changing the previous values.
-
     return (
         
         <>
@@ -58,36 +50,40 @@ function Grafico ({flagShow} : GraficoProps) {
                         <div className="opcao">
                             <p className="text">VELOCIDADE</p>
                             <div className="icons-div">
-                                <IoCheckmarkSharp className="icon-mark" onClick={() => {setEnumChoice()}}/>
-                                <FaXmark className="icon-mark"/>
+                                {enumChoice.velocidade ? 
+                                (<MdOutlineToggleOn className="icon-mark" onClick={() => setEnumChoice(prevState => ({...prevState, velocidade: false}))}/>) 
+                                : ((<MdOutlineToggleOff className="icon-mark" onClick={() => setEnumChoice(prevState => ({...prevState, velocidade: true}))}/>))}
                             </div>
                         </div>
                         <div className="opcao">
                             <p className="text">ACELERACAO</p>
                             <div className="icons-div">
-                                <IoCheckmarkSharp className="icon-mark"/>
-                                <FaXmark className="icon-mark"/>
+                                {enumChoice.aceleracao ? 
+                                (<MdOutlineToggleOn className="icon-mark" onClick={() => setEnumChoice(prevState => ({...prevState, aceleracao: false}))}/>) 
+                                : ((<MdOutlineToggleOff className="icon-mark" onClick={() => setEnumChoice(prevState => ({...prevState, aceleracao: true}))}/>))}
                             </div>
                         </div >
                         <div className="opcao">
                             <p className="text">EIXO</p>
                             <div className="icons-div">
-                                <IoCheckmarkSharp className="icon-mark"/>
-                                <FaXmark className="icon-mark"/>
+                                {enumChoice.eixo ? 
+                                (<MdOutlineToggleOn className="icon-mark" onClick={() => setEnumChoice(prevState => ({...prevState, eixo: false}))}/>) 
+                                : ((<MdOutlineToggleOff className="icon-mark" onClick={() => setEnumChoice(prevState => ({...prevState, eixo: true}))}/>))}
                             </div>
                         </div >
                         <div className="opcao">
                             <p className="text">OUTROS</p>
                             <div className="icons-div">
-                                <IoCheckmarkSharp className="icon-mark"/>
-                                <FaXmark className="icon-mark"/>
+                                {enumChoice.outros ? 
+                                (<MdOutlineToggleOn className="icon-mark" onClick={() => setEnumChoice(prevState => ({...prevState, outros: false}))}/>) 
+                                : ((<MdOutlineToggleOff className="icon-mark" onClick={() => setEnumChoice(prevState => ({...prevState, outros: true}))}/>))}
                             </div>
                         </div >
                     </div>
                 </div>
 
                 <div className="container-chart">
-                    <ChartTeste sensor_data={sensorData} />
+                    <ChartTeste sensor_data={sensorData} enumChoice={enumChoice}/>
                 </div>
             </div>
         ) : null}

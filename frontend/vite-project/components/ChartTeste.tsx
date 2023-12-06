@@ -48,12 +48,19 @@ interface ChartData {
     }[];
   }
 
-const ChartTeste = ({ sensor_data }: DataProps) => {
+interface ChoiceProps {
+    velocidade: boolean,
+    aceleracao: boolean,
+    eixo: boolean
+    outros: boolean,
+}
 
-    const [chart1, setChart1] = useState<ChartData | null>(null);
+function ChartTeste({ sensor_data, enumChoice }: DataProps & {enumChoice : ChoiceProps}) {
+
+    const [chartAceleracao, setChartAceleracao] = useState<ChartData | null>(null);
 
     let [createdAt, setCreatedAt] = useState<string[]>([]);
-    
+
     let [pontosY1, setPontosY1] = useState<number[]>([]);
 
     let [pontosY2, setPontosY2] = useState<number[]>([]);
@@ -61,7 +68,7 @@ const ChartTeste = ({ sensor_data }: DataProps) => {
     let [pontosY3, setPontosY3] = useState<number[]>([]);
 
 
-    const [chart2, setChart2] = useState<ChartData | null>(null);
+    const [chartVelocidade, setChartVelocidade] = useState<ChartData | null>(null);
 
     let [pontosY4, setPontosY4] = useState<number[]>([]);
 
@@ -70,7 +77,7 @@ const ChartTeste = ({ sensor_data }: DataProps) => {
     let [pontosY6, setPontosY6] = useState<number[]>([]);
 
     
-    const [chart3, setChart3] = useState<ChartData | null>(null);
+    const [chartEixo, setChartEixo] = useState<ChartData | null>(null);
 
     let [pontosY7, setPontosY7] = useState<number[]>([]);
 
@@ -79,7 +86,7 @@ const ChartTeste = ({ sensor_data }: DataProps) => {
     let [pontosY9, setPontosY9] = useState<number[]>([]);
 
 
-    const [chart4, setChart4] = useState<ChartData | null>(null);
+    const [chartOutros, setChartOutros] = useState<ChartData | null>(null);
 
     let [pontosY10, setPontosY10] = useState<number[]>([]);
 
@@ -125,7 +132,7 @@ const ChartTeste = ({ sensor_data }: DataProps) => {
             setPontosY10(prevPontosY10 => [...prevPontosY10, sensor_data[0]["esterc"]]);
 
     
-            setChart1({
+            setChartAceleracao({
                 options: {
                     chart: {
                       id: "realtime",
@@ -176,7 +183,7 @@ const ChartTeste = ({ sensor_data }: DataProps) => {
             })
 
 
-            setChart2({
+            setChartVelocidade({
                 options: {
                     chart: {
                       id: "realtime",
@@ -225,7 +232,7 @@ const ChartTeste = ({ sensor_data }: DataProps) => {
                   ]
             })
 
-            setChart3({
+            setChartEixo({
               options: {
                   chart: {
                     id: "realtime",
@@ -274,7 +281,7 @@ const ChartTeste = ({ sensor_data }: DataProps) => {
                 ]
           })
 
-          setChart4({
+          setChartOutros({
             options: {
                 chart: {
                   id: "realtime",
@@ -325,31 +332,31 @@ const ChartTeste = ({ sensor_data }: DataProps) => {
 
     return (
       <div className="sensor-chart">
-      {chart1 &&
+      {chartVelocidade && enumChoice.velocidade &&
       <Chart 
-      options={chart1.options}
-      series={chart1.series}
+      options={chartVelocidade.options}
+      series={chartVelocidade.series}
       width={600}
       type="line"
       />}
-      {/* {chart2 &&
+      {chartAceleracao && enumChoice.aceleracao &&
       <Chart 
-      options={chart2.options}
-      series={chart2.series}
+      options={chartAceleracao.options}
+      series={chartAceleracao.series}
       width={600}
       type="line"
       />}
-      {chart3 &&
+      {chartEixo && enumChoice.eixo &&
       <Chart 
-      options={chart3.options}
-      series={chart3.series}
+      options={chartEixo.options}
+      series={chartEixo.series}
       width={600}
       type="line"
-      />} */}
-      {chart4 &&
+      />}
+      {chartOutros && enumChoice.outros &&
       <Chart 
-      options={chart4.options}
-      series={chart4.series}
+      options={chartOutros.options}
+      series={chartOutros.series}
       width={600}
       type="line"
       />}
