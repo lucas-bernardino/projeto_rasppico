@@ -7,7 +7,7 @@ import datetime
 import requests
 import subprocess
 import multiprocessing
-from handle_sensors_module import *
+#from handle_sensors_module import *
 
 sensor_gps = serial.Serial("/dev/serial0", 9600, timeout=1)
 sensor_angulo = serial.Serial("/dev/ttyAMA2", 9600, timeout=11)
@@ -38,7 +38,7 @@ dados_package = {}
 contador_botao = 0
 flag_button_collection = False
 
-session = requests.Session()
+#session = requests.Session()
 
 def button_pressed_callback(channel):
     global interrupt_flag, data_sensors, contador_botao, flag_button_collection
@@ -48,11 +48,11 @@ def button_pressed_callback(channel):
     print(current_time)
     print(f"Contador: {contador}")
     data_sensors = ""
-    if not flag_button_collection:
-        new_collection = session.post("http://150.162.217.34:3001/button_pressed", json = {"contador": contador_botao})
-        print("Resposta button pressed: ", new_collection.text)
-        contador_botao+=1
-    flag_button_collection = not flag_button_collection
+    #if not flag_button_collection:
+    #    new_collection = session.post("http://150.162.217.34:3001/button_pressed", json = {"contador": contador_botao})
+    #    print("Resposta button pressed: ", new_collection.text)
+    #    contador_botao+=1
+    #flag_button_collection = not flag_button_collection
     
 
 GPIO.setmode(GPIO.BCM)
@@ -105,63 +105,70 @@ def core1_thread():
     while interrupt_flag:
         sensor_b = sensor_angulo.readline()
         if sensor_b:
-            sensor_b_decoded = sensor_b.decode('utf-8').replace("Angle:", "").rstrip()
+            try:
+                sensor_b_decoded = sensor_b.decode('utf-8').replace("Angle:", "").rstrip()
 
 
-            if len(data_sensors) == 176:
+                if len(data_sensors) == 176:
 
-                if not interrupt_flag:
+                    if not interrupt_flag:
+                        data_sensors = ""
+                        sensor_b_decoded = ""
+                        break
+
+                    #print("LEITURA HALL: ", hall.value()
+                    data_sensors += (str(datetime.datetime.now())).split()[1]
+
+                    data_sensors += sensor_b_decoded
+
+                    if len(data_sensors) > 20:
+                        arquivo.write(data_sensors + "\n")
+                        #print(f"DADOS COMBINADOS: {data_sensors}, horario: {datetime.datetime.now()}, cont: {contador}. Tam data sensors: {len(data_sensors)}")
+                        """
+                        acel_x, acel_y, acel_z, temp = handleSensor1(data_sensors[0:22])
+                        vel_x, vel_y, vel_z = handleSensor2(data_sensors[22:44])
+                        roll, pitch, yaw = handleSensor3(data_sensors[44:66])
+                        mag_x, mag_y, mag_z = handleSensor4(data_sensors[66:88])
+                        air_press, altitude = handleSensor5(data_sensors[88:110])
+                        longitude, latitude = handleSensor6(data_sensors[110:132])
+                        velocidade_gps = handleSensor7(data_sensors[132:154])
+                        angle = data_sensors[176:]
+
+                        dados_package = {
+                        "id": contador,
+                        "acel_x": acel_x,
+                        "acel_y": acel_y,
+                        "acel_z": acel_z,
+                        "vel_x": vel_x,
+                        "vel_y": vel_y,
+                        "vel_z": vel_z,
+                        "roll": roll,
+                        "pitch": pitch,
+                        "yaw": yaw,
+                        "mag_x": mag_x,
+                        "mag_y": mag_y,
+                        "mag_z": mag_z,
+                        "temp": temp,
+                        "esterc": angle,
+                        "rot": "999",
+                        "veloc": velocidade_gps,
+                        "long": longitude,
+                        "lat": latitude,
+                        "press_ar": air_press,
+                        "altitude": altitude,
+                        }
+                        #post_data = session.post("http://150.162.217.34:3001/enviar", json=dados_package)
+                        # #print(f"\nResposta: {req.text}\n")  
+                        print(dados_package)"""
+
+                        print("Dados: ", data_sensors)
+
+                        contador +=1
+                        
                     data_sensors = ""
-                    sensor_b_decoded = ""
-                    break
-
-                #print("LEITURA HALL: ", hall.value()
-                
-                data_sensors += sensor_b_decoded
-
-                if len(data_sensors) > 20:
-                    arquivo.write(data_sensors + "\n")
-                    #print(f"DADOS COMBINADOS: {data_sensors}, horario: {datetime.datetime.now()}, cont: {contador}. Tam data sensors: {len(data_sensors)}")
-                    
-                    acel_x, acel_y, acel_z, temp = handleSensor1(data_sensors[0:22])
-                    vel_x, vel_y, vel_z = handleSensor2(data_sensors[22:44])
-                    roll, pitch, yaw = handleSensor3(data_sensors[44:66])
-                    mag_x, mag_y, mag_z = handleSensor4(data_sensors[66:88])
-                    air_press, altitude = handleSensor5(data_sensors[88:110])
-                    longitude, latitude = handleSensor6(data_sensors[110:132])
-                    velocidade_gps = handleSensor7(data_sensors[132:154])
-                    angle = data_sensors[176:]
-
-                    dados_package = {
-                    "id": contador,
-                    "acel_x": acel_x,
-                    "acel_y": acel_y,
-                    "acel_z": acel_z,
-                    "vel_x": vel_x,
-                    "vel_y": vel_y,
-                    "vel_z": vel_z,
-                    "roll": roll,
-                    "pitch": pitch,
-                    "yaw": yaw,
-                    "mag_x": mag_x,
-                    "mag_y": mag_y,
-                    "mag_z": mag_z,
-                    "temp": temp,
-                    "esterc": angle,
-                    "rot": "999",
-                    "veloc": velocidade_gps,
-                    "long": longitude,
-                    "lat": latitude,
-                    "press_ar": air_press,
-                    "altitude": altitude,
-                    }
-                    post_data = session.post("http://150.162.217.34:3001/enviar", json=dados_package)
-                    # #print(f"\nResposta: {req.text}\n")  
-                    print(dados_package)
-
-                    contador +=1
-                    
-                data_sensors = ""
+            except UnicodeDecodeError:
+                print("ERRO UNICODE")
+                pass
 
     
     sensor_b_decoded = ""
