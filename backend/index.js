@@ -9,6 +9,8 @@ app.use(cors());
 
 let SensorModel;
 
+let ip;
+
 app.get('/teste', async (req, res) => {
     try {
         res.status(200).json("teste");
@@ -76,6 +78,25 @@ try {
     res.status(500).json({message: error.message});
 }
 });
+
+app.post('/ip', async (req, res) => {
+    try {
+        ip = req.body;
+        res.status(200).json(req.body);
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({message: error.message});
+    }
+})
+
+app.get('/ip', async (req, res) => {
+    try {
+        res.status(200).json(ip);
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({message: error.message});
+    }
+})
 
 
 
