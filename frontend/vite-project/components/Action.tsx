@@ -13,7 +13,7 @@ function Action () {
 
     const handleDownload = async () => {
         try {
-            const response = await fetch('http://150.162.217.186:5000/csv');
+            const response = await fetch('http://150.162.217.7:5000/csv');
             const blob = await response.blob();
             const url = window.URL.createObjectURL(new Blob([blob]));
             const link = document.createElement('a');

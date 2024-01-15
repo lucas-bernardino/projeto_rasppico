@@ -6,11 +6,12 @@ const SendChart = () => {
 
     const [sensorData, setSensorData] = useState();
     async function fetchData() {
-        const response = await fetch("http://150.162.217.186:3001/receber_ultimo");
+        const response = await fetch("http://150.162.217.227:3001/receber_ultimo");
         const data = await response.json();
         setSensorData(data);
         // console.log(data);
         //console.log(sensorData[0]);
+        console.log('ESTOU NA SENDCHART');
       }
 
     useEffect(() => {

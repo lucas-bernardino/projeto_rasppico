@@ -8,7 +8,7 @@ function Sensor() {
   const [sensorData, setSensorData] = useState([]);
 
   async function getSensorData() {
-    const response = await fetch("http://150.162.217.186:3001/receber_ultimo");
+    const response = await fetch("http://150.162.217.7:3001/receber_ultimo");
     const data = await response.json();
     setSensorData(data);
   }
@@ -156,7 +156,7 @@ function Sensor() {
       <div className="sensor-box">
         <div className="sensor-title"> Pressão </div>
         <div className="sensor-data-title">
-          Pressão do Ar:
+          Velocidade Roda:
           <div className="sensor-data-value">{sensorData[0] && Number(sensorData[0]["press_ar"]).toFixed(2)}</div>
         </div>
         <div className="sensor-data-title">

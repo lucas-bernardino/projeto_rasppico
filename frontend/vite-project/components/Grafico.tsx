@@ -10,6 +10,8 @@ interface Choice {
     aceleracao: boolean,
     eixo: boolean
     outros: boolean,
+    rotacao: boolean,
+    velRoda: boolean
 }
 
 interface GraficoProps {
@@ -20,7 +22,7 @@ function Grafico ({flagShow} : GraficoProps) {
 
     const [sensorData, setSensorData] = useState();
     async function fetchData() {
-        const response = await fetch("http://150.162.217.186:3001/receber_ultimo");
+        const response = await fetch("http://150.162.217.7:3001/receber_ultimo");
         const data = await response.json();
         setSensorData(data);
       }
@@ -37,7 +39,9 @@ function Grafico ({flagShow} : GraficoProps) {
         velocidade: false,
         aceleracao: false,
         eixo: false,
-        outros: false
+        outros: false,
+        rotacao: false,
+        velRoda: false
     })
 
     return (
@@ -77,6 +81,22 @@ function Grafico ({flagShow} : GraficoProps) {
                                 {enumChoice.outros ? 
                                 (<MdOutlineToggleOn className="icon-mark" onClick={() => setEnumChoice(prevState => ({...prevState, outros: false}))}/>) 
                                 : ((<MdOutlineToggleOff className="icon-mark" onClick={() => setEnumChoice(prevState => ({...prevState, outros: true}))}/>))}
+                            </div>
+                        </div >
+                        <div className="opcao">
+                            <p className="text">ROTACAO</p>
+                            <div className="icons-div">
+                                {enumChoice.rotacao ? 
+                                (<MdOutlineToggleOn className="icon-mark" onClick={() => setEnumChoice(prevState => ({...prevState, rotacao: false}))}/>) 
+                                : ((<MdOutlineToggleOff className="icon-mark" onClick={() => setEnumChoice(prevState => ({...prevState, rotacao: true}))}/>))}
+                            </div>
+                        </div >
+                        <div className="opcao">
+                            <p className="text">VEL RODA</p>
+                            <div className="icons-div">
+                                {enumChoice.velRoda ? 
+                                (<MdOutlineToggleOn className="icon-mark" onClick={() => setEnumChoice(prevState => ({...prevState, velRoda: false}))}/>) 
+                                : ((<MdOutlineToggleOff className="icon-mark" onClick={() => setEnumChoice(prevState => ({...prevState, velRoda: true}))}/>))}
                             </div>
                         </div >
                     </div>
