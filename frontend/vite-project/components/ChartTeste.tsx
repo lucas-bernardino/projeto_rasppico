@@ -53,6 +53,8 @@ interface ChoiceProps {
     aceleracao: boolean,
     eixo: boolean
     outros: boolean,
+    rotacao: boolean,
+    velRoda: boolean,
 }
 
 function ChartTeste({ sensor_data, enumChoice }: DataProps & {enumChoice : ChoiceProps}) {
@@ -91,6 +93,16 @@ function ChartTeste({ sensor_data, enumChoice }: DataProps & {enumChoice : Choic
     let [pontosY10, setPontosY10] = useState<number[]>([]);
 
 
+    const [chartRotacao, setChartRotacao] = useState<ChartData | null>(null);
+
+    let [pontosY11, setPontosY11] = useState<number[]>([]);
+
+
+    const [chartVelRoda, setChartVelRoda] = useState<ChartData | null>(null);
+
+    let [pontosY12, setPontosY12] = useState<number[]>([]);
+
+
     useEffect(() => {
 
         if (sensor_data && sensor_data.length > 0)
@@ -113,6 +125,10 @@ function ChartTeste({ sensor_data, enumChoice }: DataProps & {enumChoice : Choic
               setPontosY9(prevPontosY9 => prevPontosY9.slice(20));
             
               setPontosY10(prevPontosY10 => prevPontosY10.slice(20));
+
+              setPontosY11(prevPontosY10 => prevPontosY10.slice(20));
+
+              setPontosY12(prevPontosY10 => prevPontosY10.slice(20));
             
             }
             
@@ -131,7 +147,10 @@ function ChartTeste({ sensor_data, enumChoice }: DataProps & {enumChoice : Choic
 
             setPontosY10(prevPontosY10 => [...prevPontosY10, sensor_data[0]["esterc"]]);
 
+            setPontosY11(prevPontosY10 => [...prevPontosY10, sensor_data[0]["rot"]]);
     
+            setPontosY12(prevPontosY10 => [...prevPontosY10, sensor_data[0]["press_ar"]]);
+
             setChartAceleracao({
                 options: {
                     chart: {
@@ -322,6 +341,89 @@ function ChartTeste({ sensor_data, enumChoice }: DataProps & {enumChoice : Choic
               ]
         })
 
+        setChartRotacao({
+          options: {
+              chart: {
+                id: "realtime",
+                height: 350,
+                type: 'line',
+              },
+              xaxis: {
+                categories: createdAt,
+                axisTicks: {
+                  show: true, // Show X-axis ticks
+                  color: '#ff0000', // Set the color of X-axis ticks
+                },
+                labels: {
+                  style: {
+                    colors: '#ff0000', // Set the color of X-axis labels
+                  },
+                },
+              },
+              yaxis: {
+                min: 0,
+                max: 8000,
+                labels: {
+                  style: {
+                    colors: ['#00ff00'], // Set the color of Y-axis labels
+                  },
+                },
+                axisTicks: {
+                  show: true, // Show Y-axis ticks
+                  color: '#0000ff', // Set the color of Y-axis ticks
+                },
+              },
+            },
+            series: [
+              {
+                name: "Rotacao",
+                data: pontosY11
+              }
+            ]
+      })
+
+
+      setChartVelRoda({
+        options: {
+            chart: {
+              id: "realtime",
+              height: 350,
+              type: 'line',
+            },
+            xaxis: {
+              categories: createdAt,
+              axisTicks: {
+                show: true, // Show X-axis ticks
+                color: '#ff0000', // Set the color of X-axis ticks
+              },
+              labels: {
+                style: {
+                  colors: '#ff0000', // Set the color of X-axis labels
+                },
+              },
+            },
+            yaxis: {
+              min: 0,
+              max: 150,
+              labels: {
+                style: {
+                  colors: ['#00ff00'], // Set the color of Y-axis labels
+                },
+              },
+              axisTicks: {
+                show: true, // Show Y-axis ticks
+                color: '#0000ff', // Set the color of Y-axis ticks
+              },
+            },
+          },
+          series: [
+            {
+              name: "Vel Roda",
+              data: pontosY12
+            }
+          ]
+    })
+
         }
 
         
@@ -357,6 +459,20 @@ function ChartTeste({ sensor_data, enumChoice }: DataProps & {enumChoice : Choic
       <Chart 
       options={chartOutros.options}
       series={chartOutros.series}
+      width={600}
+      type="line"
+      />}
+      {chartRotacao && enumChoice.rotacao &&
+      <Chart 
+      options={chartRotacao.options}
+      series={chartRotacao.series}
+      width={600}
+      type="line"
+      />}
+      {chartVelRoda && enumChoice.velRoda &&
+      <Chart 
+      options={chartVelRoda.options}
+      series={chartVelRoda.series}
       width={600}
       type="line"
       />}
