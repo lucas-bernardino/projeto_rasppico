@@ -11,7 +11,7 @@ import math
 #from handle_sensors_module import *
 
 
-time.sleep(30)
+#time.sleep(30)
 
 
 sensor_gps = serial.Serial("/dev/serial0", 9600, timeout=1)
@@ -154,7 +154,7 @@ def core1_thread():
                     data_sensors += sensor_b_decoded
 
                     if len(data_sensors) > 20:
-                        calculate_speed(20)  # call this function with wheel radius as a parameter
+                        calculate_speed(15)  # call this function with wheel radius as a parameter
                         hall_data = "#{:.2f}${:.2f}".format(rpm, km_per_hour)
                         data_sensors += hall_data
                         # print('rpm:{0:.0f}-RPM kmh:{1:.0f}-KMH dist_meas:{2:.2f}m pulse:{3}'.format(rpm, km_per_hour, dist_meas, pulse))
