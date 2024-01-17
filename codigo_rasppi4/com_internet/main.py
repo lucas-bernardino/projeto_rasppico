@@ -7,10 +7,11 @@ import datetime
 import requests
 import subprocess
 import multiprocessing
+import math
 from handle_sensors_module import *
 
 
-time.sleep(30)
+#time.sleep(30)
 
 
 
@@ -73,6 +74,49 @@ GPIO.setup(BUTTON_GPIO, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 GPIO.add_event_detect(BUTTON_GPIO, GPIO.FALLING, callback=button_pressed_callback, bouncetime=1000)
 
+
+
+
+
+
+def ticks_ms():
+    return int(time.time() * 1000)
+
+def calculate_elapse(channel):
+    global pulse, start_timer, elapse
+    pulse += 1
+    elapse = ticks_ms() - start_timer
+    start_timer = ticks_ms()
+
+dist_meas = 0.00
+km_per_hour = 0
+rpm = 0
+elapse = 0
+pulse = 0
+start_timer = ticks_ms()
+
+HALL_PIN = 23
+
+GPIO.setmode(GPIO.BCM)
+sensor = GPIO.setup(HALL_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.add_event_detect(HALL_PIN, GPIO.FALLING, callback=calculate_elapse)
+
+def calculate_speed(r_cm):
+    global pulse, elapse, rpm, dist_km, dist_meas, km_per_hour
+    if elapse != 0:
+        rpm = 1 / (elapse / 60000)
+        circ_cm = 2 * math.pi * r_cm
+        dist_km = circ_cm / 100000
+        km_per_sec = dist_km / (elapse / 1000)
+        km_per_hour = km_per_sec * 3600
+        dist_meas = (dist_km * pulse) * 1000
+        return km_per_hour
+
+
+
+
+
+
 def check_bug_timer():
     global interrupt_flag, check_bug
     if check_bug:
@@ -134,6 +178,9 @@ def core1_thread():
                     data_sensors += sensor_b_decoded
 
                     if len(data_sensors) > 20:
+                        calculate_speed(15)  # call this function with wheel radius as a parameter
+                        #hall_data = "#{:.2f}${:.2f}".format(rpm, km_per_hour)
+                        #data_sensors += hall_data
                         arquivo.write(data_sensors + "\n")
                         #print(f"DADOS COMBINADOS: {data_sensors}, horario: {datetime.datetime.now()}, cont: {contador}. Tam data sensors: {len(data_sensors)}")
                         
@@ -162,11 +209,11 @@ def core1_thread():
                         "mag_z": mag_z,
                         "temp": temp,
                         "esterc": angle,
-                        "rot": "999",
+                        "rot": "{:.2f}".format(rpm),
                         "veloc": velocidade_gps,
                         "long": longitude,
                         "lat": latitude,
-                        "press_ar": air_press,
+                        "press_ar": "{:.2f}".format(km_per_hour),
                         "altitude": altitude,
                         }
                         post_data = session.post(ROTA_API + "/enviar", json=dados_package)
@@ -232,7 +279,4 @@ while True:
 
         arquivo.close()
 
-
-
-# erro caso a rasp fique sem internet: OSError: [Errno 101] Network is unreachable
 
