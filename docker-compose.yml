@@ -1,0 +1,14 @@
+version: "3"
+services:
+  backend:
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+  frontend:
+    build:
+      context: ./frontend/vite-project/
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
