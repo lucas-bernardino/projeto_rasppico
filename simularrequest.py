@@ -19,14 +19,18 @@ dados_package = {
   "rot": '999',
   "veloc": "0",
   "long": "0",
+  "lat": "0",
   "press_ar": "0.9970984455958549",
   "altitude": "24.5",
-  "lat": "0",
+}
+
+contador = {
+  "contador": "1"
 }
 
 # Enviar para Mongo
 # NAO ESQUECER DE ACRESCENTAR O ID NO DICIONARIO
-res = requests.post('http://localhost:3000/enviar', json=dados_package)
+res = requests.post('http://localhost:3001/button_pressed', json=dados_package)
 print(res.text)
 
 # # Receber todos do Mongo
