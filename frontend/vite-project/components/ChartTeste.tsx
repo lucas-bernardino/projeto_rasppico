@@ -320,8 +320,8 @@ function ChartTeste({ sensor_data, enumChoice }: DataProps & {enumChoice : Choic
                   },
                 },
                 yaxis: {
-                  min: 0,
-                  max: 360,
+                  min: 240,
+                  max: 300,
                   labels: {
                     style: {
                       colors: ['#00ff00'], // Set the color of Y-axis labels

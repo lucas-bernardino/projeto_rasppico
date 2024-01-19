@@ -1,0 +1,23 @@
+.coll-box {
+    border: 1px solid rgba(5, 152, 215, 0.761);
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+}
+
+.coll-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item {
+    display: flex;
+    margin-right: 15px;
+}
+
+.icons {
+    display: flex;
+    gap: 15px;
+    font-size: 25px;
+}

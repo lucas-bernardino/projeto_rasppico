@@ -1,8 +1,8 @@
-import { FaDownload, FaPlay } from "react-icons/fa";
-import { AiFillDelete } from "react-icons/ai";
+import { FaDownload, FaPlay, FaHistory  } from "react-icons/fa";
 import { BsFileBarGraphFill } from "react-icons/bs";
 import {BiStopwatch} from "react-icons/bi";
 import Grafico from "./Grafico"
+import History from './History'
 
 import "./Actions.css";
 import { useState } from "react";
@@ -10,6 +10,8 @@ import { useState } from "react";
 function Action () {
 
     const [flagShow, setFlagShow] = useState(false);
+
+    const [flagHistory, setFlagHistory] = useState(false);
 
     const handleDownload = async () => {
         try {
@@ -32,8 +34,11 @@ function Action () {
             <div className="ac1 action-div">
                 <FaPlay className="icon" /> MONITORAR
             </div>
-            <div className="ac2 action-div">
-                <AiFillDelete className="icon" />DELETAR
+            <div className="ac2 action-div" onClick={() => {setFlagHistory(!flagHistory)}}>
+                <FaHistory className="icon"  />HISTÓRICO
+                <div className="history-container" >
+                    {flagHistory ? <History /> : <p></p>}
+                </div>
             </div>
             <div className="grafico-container">
                 <div className="ac3 action-div" onClick={() => {setFlagShow(!flagShow)}}>

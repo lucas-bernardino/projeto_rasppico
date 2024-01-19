@@ -13,6 +13,14 @@ let ip;
 
 app.get('/teste', async (req, res) => {
     try {
+        /* Obter nome de todas as colecoes */
+        // const collectionNames = await mongoose.connection.db.listCollections().toArray();
+        // console.log('All collections:', collectionNames.map(coll => coll.name));
+        /* Deletar todas as colecoes */
+        // collectionNames.map( async (coll) => {
+        //     const deleteCollection = await mongoose.connection.db.collection(coll.name).drop()
+        //     console.log(deleteCollection);
+        // })
         res.status(200).json("teste");
     } catch (error) {
         res.status(500).json({message: error.message});
@@ -62,6 +70,7 @@ app.get('/receber/:id', async (req, res) => {
 app.post('/enviar', async (req, res) => {
     try {
         create_sensor = await SensorModel.create(req.body);
+
         res.status(200).json(create_sensor);
     } catch (error) {
         console.log(error.message);
@@ -98,6 +107,25 @@ app.get('/ip', async (req, res) => {
     }
 })
 
+app.get('/collections', async (req, res) => {
+    try {
+        /* Obter nome de todas as colecoes */
+        // const collectionNames = await mongoose.connection.db.listCollections().toArray();
+        // console.log('All collections:', collectionNames.map(coll => coll.name));
+        /* Deletar todas as colecoes */
+        // collectionNames.map( async (coll) => {
+        //     const deleteCollection = await mongoose.connection.db.collection(coll.name).drop()
+        //     console.log(deleteCollection);
+        // })
+        let arrayNames = [];
+        const collectionNames = (await mongoose.connection.db.listCollections().toArray()).map((coll) => arrayNames.push(coll.name));
+        res.status(200).json({ "collectionNames": arrayNames });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: error.message });
+    }
+})
+
 
 
 
@@ -109,7 +137,6 @@ mongoose.connect('mongodb+srv://admin:root@motobmw.9krdce4.mongodb.net/Node-API?
     app.listen(3001, '0.0.0.0', () => {
         console.log('Listening to port:  ' + 3001);
     });
-    //const Teste = mongoose.model('testando', sensorSchema);
 }).catch((error) => {
     console.log(error);
 });
