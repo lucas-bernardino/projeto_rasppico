@@ -2,12 +2,12 @@ import requests
 
 dados_package = {
   "id": "0",
-  "acel_x": "-0.0765625",
-  "acel_y": "0.1435546875",
-  "acel_z": "9.771289062500001",
-  "vel_x": "0",
-  "vel_y": "0",
-  "vel_z": "0",
+  "acel_x": "0",
+  "acel_y": "0",
+  "acel_z": "0",
+  "vel_x": "100",
+  "vel_y": "100",
+  "vel_z": "100",
   "roll": "-1.4556884765625",
   "pitch": "0.2471923828125",
   "yaw": "143.096923828125",
@@ -25,12 +25,17 @@ dados_package = {
 }
 
 contador = {
-  "contador": "1"
+  "contador": "6"
 }
+
+# print(requests.get('http://192.168.0.8:3001/teste').text)
 
 # Enviar para Mongo
 # NAO ESQUECER DE ACRESCENTAR O ID NO DICIONARIO
-res = requests.post('http://localhost:3001/button_pressed', json=dados_package)
+res = requests.post('http://192.168.0.8:3001/button_pressed', json=contador)
+print(res.text)
+#
+res = requests.post('http://192.168.0.8:3001/enviar', json=dados_package)
 print(res.text)
 
 # # Receber todos do Mongo
