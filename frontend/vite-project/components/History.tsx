@@ -9,7 +9,7 @@ function History() {
 
   const getCollectionNames = async () => {
     try {
-      const response = await fetch("http://192.168.0.8:3001/collections");
+      const response = await fetch("https://back-bmw-sensor.onrender.com/collections");
       const collections = await response.json();
       const { collectionNames } = collections;
       setCollectionData(collectionNames);
@@ -23,7 +23,7 @@ function History() {
   }, []);
 
   const handleDeleteButton = async (collectionName: string) => {
-    await fetch("http://192.168.0.8:3001/delete", {
+    await fetch("https://back-bmw-sensor.onrender.com/delete", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -36,7 +36,7 @@ function History() {
   const handleDownloadButton = async (collectionName: string) => {
     try {
       const response = await fetch(
-        "http://192.168.0.8:5000/download?" +
+        "http://150.162.217.7:5000/download?" +
           new URLSearchParams({ name: collectionName }),
       );
       const blob = await response.blob();

@@ -8,7 +8,7 @@ CORS(app)
 
 @app.route('/csv')
 def get_csv():
-    all_data = requests.get("http://192.168.0.8:3001/receber").json() # http://150.162.217.34:3001/receber
+    all_data = requests.get("https://back-bmw-sensor.onrender.com/receber").json() # http://150.162.217.34:3001/receber
 
     df = pd.DataFrame(data=all_data)
     df = df.drop(['_id', 'id', 'createdAt', '__v'], axis=1)
@@ -31,7 +31,7 @@ def download():
 
     name = request.args.get('name')  
 
-    data = requests.post("http://192.168.0.8:3001/collectiondata", json={ 'collectionName': name}).json()
+    data = requests.post("https://back-bmw-sensor.onrender.com/collectiondata", json={ 'collectionName': name}).json()
     df = pd.DataFrame(data=data)
     df = df.drop(['_id', 'id', 'createdAt', '__v'], axis=1)
     df.to_csv(index=False)
