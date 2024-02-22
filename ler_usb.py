@@ -60,10 +60,6 @@ def callback(msg):
         acel_y = str(msg).split()[4][:-1]
         acel_z = str(msg).split()[5][:-1]
         temp = str(msg).split()[6].replace("temp_celsius:", "")
-        # print("Aceleração x: ", acel_x)
-        # print("Aceleração y: ", acel_y)
-        # print("Aceleração z: ", acel_z)
-        # print("Temperatura: ", temp)
         acel_x_list.append(acel_x)
         acel_y_list.append(acel_y)
         acel_z_list.append(acel_z)
@@ -80,10 +76,6 @@ def callback(msg):
         roll_list.append(roll)
         pitch_list.append(pitch)
         yaw_list.append(yaw)
-        # print("Roll:", roll)
-        # print("Pitch:", pitch)
-        # print("Yaw:", yaw)
-        # print("Version:", version)
         flag_angle = True
         
 
@@ -94,9 +86,6 @@ def callback(msg):
         ang_x_list.append(ang_x)
         ang_y_list.append(ang_y)
         ang_z_list.append(ang_z)
-        # print("Velocidade Angular x: ", ang_x)
-        # print("Velocidade Angular y: ", ang_y)
-        # print("Velocidade Angular z: ", ang_z)
         flag_angular = True
         
 
@@ -107,9 +96,6 @@ def callback(msg):
         mag_x_list.append(mag_x)
         mag_y_list.append(mag_y)
         mag_z_list.append(mag_z)
-        # print("Campo Magnetico x: ", mag_x)
-        # print("Campo Magnetico y: ", mag_y)
-        # print("Campo Magnetico z: ", mag_z)
         flag_magnetic = True
     
         
@@ -136,7 +122,6 @@ def callback(msg):
             "temp": temp,
         }
         
-        #res = requests.post('http://localhost:3000/enviar', json=data)
         res = session.post('http://localhost:3000/enviar', json=data)
         print(res.text)
         

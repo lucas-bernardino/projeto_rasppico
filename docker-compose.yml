@@ -4,11 +4,30 @@ services:
     build:
       context: ./backend/
       dockerfile: Dockerfile
+    networks:
+      - my_network
     ports:
       - "3001:3001"
+
   frontend:
     build:
       context: ./frontend/vite-project/
       dockerfile: Dockerfile
+    networks:
+      - my_network
     ports:
       - "5173:5173"
+
+  flask:
+    container_name: flask-app
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile.flask
+    networks:
+      - my_network
+    ports:
+      - "5000:5000"
+
+networks:
+  my_network:
+    driver: bridge
