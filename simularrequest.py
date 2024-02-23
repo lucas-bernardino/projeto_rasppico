@@ -25,19 +25,20 @@ dados_package = {
 }
 
 contador = {
-  "contador": "6"
+  "contador": "0"
 }
 
-# print(requests.get('http://192.168.0.8:3001/teste').text)
-
+# teste_url = 'http://localhost:3001/teste'
+# print(requests.get(teste_url))
+#
 # Enviar para Mongo
 # NAO ESQUECER DE ACRESCENTAR O ID NO DICIONARIO
-res = requests.post('http://192.168.0.8:3001/button_pressed', json=contador)
-print(res.text)
-#
-res = requests.post('http://192.168.0.8:3001/enviar', json=dados_package)
+res = requests.post('http://192.168.0.7:3001/button_pressed', json=contador)
 print(res.text)
 
+res = requests.post('http://192.168.0.7:3001/enviar', json=dados_package)
+print(res.text)
+#
 # # Receber todos do Mongo
 # dados_all = requests.get('http://localhost:3000/receber')
 # print(dados_all.json())

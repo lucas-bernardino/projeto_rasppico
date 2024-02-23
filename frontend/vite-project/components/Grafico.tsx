@@ -21,7 +21,7 @@ interface GraficoProps {
 function Grafico({ flagShow }: GraficoProps) {
   const [sensorData, setSensorData] = useState();
   async function fetchData() {
-    const response = await fetch("http://192.168.0.8:3001/receber_ultimo");
+    const response = await fetch("http://localhost:3001/receber_ultimo");
     const data = await response.json();
     setSensorData(data);
   }
@@ -219,4 +219,3 @@ function Grafico({ flagShow }: GraficoProps) {
 }
 
 export default Grafico;
-

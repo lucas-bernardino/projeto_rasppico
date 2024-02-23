@@ -14,7 +14,7 @@ function Action() {
 
   const handleDownload = async () => {
     try {
-      const response = await fetch("http://192.168.0.8:5000/csv");
+      const response = await fetch("http://localhost:5000/csv");
       const blob = await response.blob();
       const url = window.URL.createObjectURL(new Blob([blob]));
       const link = document.createElement("a");
@@ -75,4 +75,3 @@ function Action() {
 }
 
 export default Action;
-
