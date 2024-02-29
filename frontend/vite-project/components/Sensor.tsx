@@ -7,7 +7,7 @@ function Sensor() {
   const [sensorData, setSensorData] = useState([]);
 
   async function getSensorData() {
-    const response = await fetch("https://back-bmw-sensor.onrender.com/receber_ultimo");
+    const response = await fetch("http://192.168.0.9:3001/receber_ultimo");
     const data = await response.json();
     setSensorData(data);
   }
