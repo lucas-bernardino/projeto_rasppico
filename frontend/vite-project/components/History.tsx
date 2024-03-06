@@ -9,7 +9,7 @@ function History() {
 
   const getCollectionNames = async () => {
     try {
-      const response = await fetch("http://localhost:3001/collections");
+      const response = await fetch(import.meta.env.VITE_BACKEND_URL);
       const collections = await response.json();
       const { collectionNames } = collections;
       setCollectionData(collectionNames);
@@ -23,7 +23,7 @@ function History() {
   }, []);
 
   const handleDeleteButton = async (collectionName: string) => {
-    await fetch("http://localhost:3001/delete", {
+    await fetch(import.meta.env.VITE_BACKEND_URL, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -36,7 +36,7 @@ function History() {
   const handleDownloadButton = async (collectionName: string) => {
     try {
       const response = await fetch(
-        "http://localhost:5000/download?" +
+        import.meta.env.VITE_FLASK_URL +
           new URLSearchParams({ name: collectionName }),
       );
       const blob = await response.blob();
