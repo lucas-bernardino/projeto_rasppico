@@ -8,6 +8,8 @@ RUN pip install -r /app/requirements.txt
 
 COPY ./app.py /app/app.py
 
+COPY ./.env /app/.env
+
 # CMD ["cd", "./app/", "&&", "python3", "-m", "flask", "run", "--host='0.0.0.0'"]
 
 WORKDIR "/app"
