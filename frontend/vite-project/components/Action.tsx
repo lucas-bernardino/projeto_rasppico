@@ -14,7 +14,7 @@ function Action() {
 
   const handleDownload = async () => {
     try {
-      const response = await fetch(import.meta.env.VITE_FLASK_URL);
+      const response = await fetch(import.meta.env.VITE_FLASK_URL + "/csv", {headers: {'ngrok-skip-browser-warning': 'true'}});
       const blob = await response.blob();
       const url = window.URL.createObjectURL(new Blob([blob]));
       const link = document.createElement("a");

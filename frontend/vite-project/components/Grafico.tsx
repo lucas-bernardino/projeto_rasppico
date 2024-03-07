@@ -21,7 +21,7 @@ interface GraficoProps {
 function Grafico({ flagShow }: GraficoProps) {
   const [sensorData, setSensorData] = useState();
   async function fetchData() {
-    const response = await fetch(import.meta.env.VITE_BACKEND_URL);
+    const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/receber_ultimo", {headers: {'ngrok-skip-browser-warning': 'true'}});
     const data = await response.json();
     setSensorData(data);
   }
