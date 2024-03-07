@@ -15,7 +15,9 @@ CORS(app)
 
 @app.route('/csv')
 def get_csv():
-    all_data = requests.get(str(BACKEND_URL)).json() # http://150.162.217.34:3001/receber
+    headers = {'ngrok-skip-browser-warning': 'true'}
+
+    all_data = requests.get(str(BACKEND_URL + "/receber"), headers=headers).json() # http://150.162.217.34:3001/receber
 
     df = pd.DataFrame(data=all_data)
     df = df.drop(['_id', 'id', 'createdAt', '__v'], axis=1)
@@ -36,8 +38,9 @@ def get_csv():
 def download():
 
     name = request.args.get('name')  
+    headers = {'ngrok-skip-browser-warning': 'true'}
 
-    data = requests.post(str(BACKEND_URL), json={ 'collectionName': name}).json()
+    data = requests.post(str(BACKEND_URL + "/collectiondata"), json={ 'collectionName': name}, header=headers).json()
     df = pd.DataFrame(data=data)
     df = df.drop(['_id', 'id', 'createdAt', '__v'], axis=1)
     df.to_csv(index=False)
