@@ -45,7 +45,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut read_env_backend = fs::read_to_string(BACKEND_ENV_PATH)?;
     let offset = read_env_backend.rfind('=').unwrap();
     read_env_backend.replace_range(offset.., format!("={val}", val = info.backend).as_str());
-    fs::write("../backend/.env", &read_env_backend)?;
+    fs::write(BACKEND_ENV_PATH, &read_env_backend)?;
 
     let string_on_vite_env = format!(
         "VITE_BACKEND_URL={}\nVITE_FLASK_URL={}",
