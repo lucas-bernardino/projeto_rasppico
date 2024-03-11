@@ -33,10 +33,10 @@ contador = {
 #
 # Enviar para Mongo
 # NAO ESQUECER DE ACRESCENTAR O ID NO DICIONARIO
-res = requests.post('http://192.168.0.7:3001/button_pressed', json=contador)
+res = requests.post('http://localhost:3001/button_pressed', json=contador)
 print(res.text)
 
-res = requests.post('http://192.168.0.7:3001/enviar', json=dados_package)
+res = requests.post('http://localhost:3001/enviar', json=dados_package)
 print(res.text)
 #
 # # Receber todos do Mongo

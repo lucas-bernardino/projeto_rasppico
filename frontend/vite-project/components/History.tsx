@@ -9,7 +9,7 @@ function History() {
 
   const getCollectionNames = async () => {
     try {
-      const response = await fetch("http://localhost:3001/collections");
+      const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/collections", {headers: {'ngrok-skip-browser-warning': 'true'}});
       const collections = await response.json();
       const { collectionNames } = collections;
       setCollectionData(collectionNames);
@@ -23,11 +23,12 @@ function History() {
   }, []);
 
   const handleDeleteButton = async (collectionName: string) => {
-    await fetch("http://localhost:3001/delete", {
+    await fetch(import.meta.env.VITE_BACKEND_URL + "/delete", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        'ngrok-skip-browser-warning': 'true'
       },
       body: JSON.stringify({ collectionName: collectionName }),
     });
@@ -35,10 +36,7 @@ function History() {
 
   const handleDownloadButton = async (collectionName: string) => {
     try {
-      const response = await fetch(
-        "http://localhost:5000/download?" +
-          new URLSearchParams({ name: collectionName }),
-      );
+      const response = await fetch(import.meta.env.VITE_FLASK_URL + "/download?" + new URLSearchParams({ name: collectionName }), {headers: {'ngrok-skip-browser-warning': 'true'}});
       const blob = await response.blob();
       const url = window.URL.createObjectURL(new Blob([blob]));
       const link = document.createElement("a");

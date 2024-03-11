@@ -7,7 +7,7 @@ function Sensor() {
   const [sensorData, setSensorData] = useState([]);
 
   async function getSensorData() {
-    const response = await fetch("http://localhost:3001/receber_ultimo");
+    const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/receber_ultimo", {headers: {'ngrok-skip-browser-warning': 'true'}});
     const data = await response.json();
     setSensorData(data);
   }
