@@ -1,5 +1,9 @@
 #!/bin/bash
 
-python3 script-ngrok.py
+ngrok start --all --log=stdout >/dev/null &
 
-docker-compose up --build
+sleep 2
+
+cd rust-script && cargo run
+
+cd .. && docker-compose up --build
