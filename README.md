@@ -185,7 +185,14 @@ python3 sem_net.py
 cd projeto_rasppico
 ```
 - Há um *bash script* que automatiza a inicialização da aplicação. Ele inicia os serviços e cria os tuneis do ngrok e roda um script em *Rust* que seta as váriaves de ambiente *.env* com as novas URls geradas randomicamentes pelo Ngrok. Após setar tais variáveis, é subido o container e inicializado a aplicação.
-  ```
+  ```  
+  # Para rodar o script em Rust, primeiro instale-o
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+  # Verifique se foi instalado com sucesso
+  rustc –version
+  cargo –version
+
   # Antes de rodar o script, talvez você precise fornecer autorização para executá-lo
   sudo chmod +x start.sh
 
