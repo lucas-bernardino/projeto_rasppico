@@ -178,3 +178,29 @@ python3 sem_net.py
     scp pi@<IP-DA-RASPBERRY>:<DIRETORIO-MOSTRADO-NO-PWD>/<NOME-DO-ARQUIVO-RASP> <NOME-DO-NOVO-ARQUIVO>.csv
     ```
     Após isso, o arquivo já estára disponível para ser visualizado no computador
+
+9. Iniciando o projeto com Wi-Fi disponível no percurso da acquisição dos dados
+```
+# Após ter clonado o repositório, entre na pasta do repositório
+cd projeto_rasppico
+```
+- Há um *bash script* que automatiza a inicialização da aplicação. Ele inicia os serviços e cria os tuneis do ngrok e roda um script em *Rust* que seta as váriaves de ambiente *.env* com as novas URls geradas randomicamentes pelo Ngrok. Após setar tais variáveis, é subido o container e inicializado a aplicação.
+  ```
+  # Antes de rodar o script, talvez você precise fornecer autorização para executá-lo
+  sudo chmod +x start.sh
+
+  # Após ter permissão, rode
+  ./start.sh
+  ```
+  Preste atenção no output desse script. Antes de subir o container, o código em *Rust* exibirá todas as URLs geradas pelo Ngrok. Você pode acessar o site para visualizar os dados em tempo real copiando a URL do *FRONTEND ROUTE* que aparecerá no console.
+
+- Após ter subido o container, basta navegar para a pasta do código em python que envia os dados para o servidor para iniciar a acquisição de dados
+  ```
+  # Navegue até o diretório do código em python
+  cd codigo_rasppi4/com_internet
+
+  # Inicie o programa
+  python3 main.py
+  ```
+  Após ter iniciado o código em python, você já pode acompanhar os dados em tempo real no site cuja URL foi exibida anteriormente no console
+  
