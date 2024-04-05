@@ -146,13 +146,13 @@ tunnels:
 
 7. Clone o repositório
 ```
-git clone https://github.com/lucas-bernardino/projeto_rasppico.git
+git clone https://github.com/lucas-bernardino/iniciacao-cientifica-ufsc.git
 ```
 
 8. Iniciando o projeto sem Wi-Fi disponível no percurso da acquisição dos dados
 ```
 # Após ter clonado o repositório, entre na pasta contendo o código que inicia a acquisição dos dados
-cd projeto_rasppico/codigo_rasppi4/sem_internet
+cd iniciacao-cientifica-ufsc/codigo_rasppi4/sem_internet
 
 # Inicialize o programa
 python3 sem_net.py
@@ -180,7 +180,7 @@ python3 sem_net.py
     # Por padrão, os dados salvos na Raspberry são do tipo dados0.csv, dados1.csv, dados2.csv ...
     # Assim, você deve executar o próximo comando substituindo o em <NOME-DO-ARQUIVO-RASP> o arquivo correspondente na 
     # Raspberry. Um exemplo seria: 
-    # scp pi@192.168.0.1:/home/pi/projeto_rasppico/codigo_rasppi4/sem_internet/dados0.csv primeiro_teste.csv
+    # scp pi@192.168.0.1:/home/pi/iniciacao-cientifica-ufsc/codigo_rasppi4/sem_internet/dados0.csv primeiro_teste.csv
 
     scp pi@<IP-DA-RASPBERRY>:<DIRETORIO-MOSTRADO-NO-PWD>/<NOME-DO-ARQUIVO-RASP> <NOME-DO-NOVO-ARQUIVO>.csv
     ```
@@ -189,7 +189,7 @@ python3 sem_net.py
 9. Iniciando o projeto com Wi-Fi disponível no percurso da acquisição dos dados
 ```
 # Após ter clonado o repositório, entre na pasta do repositório
-cd projeto_rasppico
+cd iniciacao-cientifica-ufsc
 ```
 - Há um **bash script** que automatiza a inicialização da aplicação. Ele inicia os serviços e cria os tuneis do *Ngrok* e roda um script em **Rust** que seta as váriaves de ambiente *.env* com as novas URls geradas randomicamentes pelo *Ngrok*. Após setar tais variáveis, é subido o container e inicializado a aplicação.
   ```  
@@ -211,7 +211,7 @@ cd projeto_rasppico
 - Após ter subido o container, basta navegar para a pasta do código em python que envia os dados para o servidor para iniciar a acquisição de dados
   ```
   # Navegue até o diretório do código em python
-  cd codigo_rasppi4/com_internet
+  cd iniciacao-cientifica-ufsc/com_internet
 
   # Inicie o programa
   python3 main.py
