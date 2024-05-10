@@ -49,7 +49,7 @@ Antes de iniciar a acquisição, deve-se ter disponibilidade de Wi-Fi e um dispo
     - O usuário pode visualizar os dados, observar o gráfico deles em tempo real ao longo do tempo e baixar os dados em uma planilha de formato *csv* através da página construída utilizando a biblioteca **React** utilizando o **Typescript**. Ela está constantemente fazendo requisições para a *API* feita em *NodeJs* e também ocasionamente faz requisições para a *API* feita em *Flask* para baixar a planilha em *csv*.
 
 4. **Docker** e Deploy
-    - O frontend e backend são inicializados através de containers que rodam na própria Raspberry Pi 4, utilizando o *Docker*. Como nem sempre a rede de Wi-Fi utilizada pela Raspberry será a mesma que o cliente visualizará a página, foi utilizado o **Ngrok**, que permite expor os serviços que estão sendo executados localmente para a Internet.
+    - O frontend e backend são inicializados através de containers que rodam na própria Raspberry Pi 4, utilizando o *Docker*. Como nem sempre a rede de Wi-Fi utilizada pela Raspberry será a mesma que o cliente visualizará a página, foi utilizado o **Ngrok**, que permite expor os serviços que estão sendo executados localmente para a Internet. Porém, como foi utilizado o free-tier do Ngrok, apenas 20000 requisições podem ser feitas por mês.
 
 ## Como utilizar
 
