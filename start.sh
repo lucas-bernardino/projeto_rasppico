@@ -6,4 +6,4 @@ sleep 2
 
 cd rust-script && cargo run
 
-cd .. && docker-compose up --build
+cd .. && docker-compose up
