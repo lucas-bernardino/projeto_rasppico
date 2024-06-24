@@ -7,7 +7,7 @@ function Sensor() {
   const [sensorData, setSensorData] = useState([]);
 
   async function getSensorData() {
-    const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/receber_ultimo", {headers: {'ngrok-skip-browser-warning': 'true'}});
+    const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/receber_ultimo", { headers: { 'ngrok-skip-browser-warning': 'true' } });
     const data = await response.json();
     setSensorData(data);
   }
@@ -26,7 +26,7 @@ function Sensor() {
   return (
     <div className="sensor-container">
       <div className="sensor-box">
-        <div className="sensor-title"> Velocidade Angular</div>
+        <div className="sensor-title"> Vel. Angular</div>
         <div className="sensor-data-title">
           Velocidade Angular X
           <div className="sensor-data-value">
@@ -52,8 +52,8 @@ function Sensor() {
               Number(
                 Math.sqrt(
                   sensorData[0]["vel_x"] ** 2 +
-                    sensorData[0]["vel_y"] ** 2 +
-                    sensorData[0]["vel_z"] ** 2,
+                  sensorData[0]["vel_y"] ** 2 +
+                  sensorData[0]["vel_z"] ** 2,
                 ),
               ).toFixed(2)}
           </div>
@@ -87,8 +87,8 @@ function Sensor() {
               Number(
                 Math.sqrt(
                   sensorData[0]["acel_x"] ** 2 +
-                    sensorData[0]["acel_y"] ** 2 +
-                    sensorData[0]["acel_z"] ** 2,
+                  sensorData[0]["acel_y"] ** 2 +
+                  sensorData[0]["acel_z"] ** 2,
                 ),
               ).toFixed(2)}
           </div>
@@ -122,8 +122,8 @@ function Sensor() {
               Number(
                 Math.sqrt(
                   sensorData[0]["roll"] ** 2 +
-                    sensorData[0]["pitch"] ** 2 +
-                    sensorData[0]["yaw"] ** 2,
+                  sensorData[0]["pitch"] ** 2 +
+                  sensorData[0]["yaw"] ** 2,
                 ),
               ).toFixed(2)}
           </div>
@@ -157,8 +157,8 @@ function Sensor() {
               Number(
                 Math.sqrt(
                   sensorData[0]["mag_x"] ** 2 +
-                    sensorData[0]["mag_y"] ** 2 +
-                    sensorData[0]["mag_z"] ** 2,
+                  sensorData[0]["mag_y"] ** 2 +
+                  sensorData[0]["mag_z"] ** 2,
                 ),
               ).toFixed(2)}
           </div>
