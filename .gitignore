@@ -1,1 +1,4 @@
 rust-script/target
+
+url/target
+url/.env
